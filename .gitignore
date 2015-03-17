@@ -1,2 +1,11 @@
 BreakingBalls/Library/
 BreakingBalls/Temp/
+*.svd
+*.userprefs
+*.csproj
+*.pidb
+*.suo
+*.sln
+*.user
+*.unityproj
+*.booproj
