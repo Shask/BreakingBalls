@@ -11,8 +11,8 @@ GameObject:
   - 65: {fileID: 6548824}
   - 114: {fileID: 11486228}
   - 114: {fileID: 11415494}
-  - 212: {fileID: 21242268}
-  - 95: {fileID: 9584102}
+  - 212: {fileID: 21267466}
+  - 95: {fileID: 9538600}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -44,7 +44,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 2.20000005, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!95 &9584102
+--- !u!95 &9538600
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 1
@@ -74,7 +74,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gravity: 20
   speed: 8
-  acceleration: 50
+  acceleration: 100
   jumpHeight: 12
 --- !u!114 &11486228
 MonoBehaviour:
@@ -91,7 +91,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   grounded: 0
---- !u!212 &21242268
+--- !u!212 &21267466
 SpriteRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}

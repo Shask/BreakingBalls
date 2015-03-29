@@ -28,10 +28,21 @@ public class PlayerController : MonoBehaviour {
 		targetSpeed = Input.GetAxisRaw("Horizontal") * speed;
 		currentSpeed = IncrementTowards(currentSpeed, targetSpeed,acceleration);
 		if (currentSpeed > 0) {
-
+			PAnim.CrossFade("StickFigureRun",0.0f);
 			PAnim.SetBool ("Run", true);
-		} else {PAnim.SetBool ("Run", false);
+			PAnim.SetBool ("RunBack", false);
 		}
+		if (currentSpeed <0) {
+			PAnim.CrossFade("StickFigureRunBack",0.0f);
+			PAnim.SetBool ("Run", true);
+			PAnim.SetBool ("RunBack", true);
+		} 
+		if (currentSpeed ==0) {
+			PAnim.CrossFade("StickFigureIddle",0.0f);
+			PAnim.SetBool ("Run", false);
+			PAnim.SetBool ("RunBack", false);
+		} 
+
 		if (playerPhysics.grounded) {
 			amountToMove.y = 0;
 			
