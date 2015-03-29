@@ -8,11 +8,11 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 486794}
-  - 212: {fileID: 21251480}
-  - 95: {fileID: 9563992}
   - 65: {fileID: 6548824}
   - 114: {fileID: 11486228}
   - 114: {fileID: 11415494}
+  - 212: {fileID: 21242268}
+  - 95: {fileID: 9584102}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 150734}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: .639999986, y: 6.5, z: -.0500000007}
-  m_LocalScale: {x: .400000006, y: .400000006, z: .400000006}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -44,7 +44,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 2.20000005, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!95 &9563992
+--- !u!95 &9584102
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 1
@@ -53,7 +53,7 @@ Animator:
   m_GameObject: {fileID: 150734}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: dd32f7b20bf1ae9408765762d5ebc0d0, type: 2}
+  m_Controller: {fileID: 9100000, guid: 36bdd23292c964743ac240b1b168baa5, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -91,7 +91,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   grounded: 0
---- !u!212 &21251480
+--- !u!212 &21242268
 SpriteRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}

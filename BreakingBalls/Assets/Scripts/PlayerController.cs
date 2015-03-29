@@ -13,18 +13,25 @@ public class PlayerController : MonoBehaviour {
 	private float currentSpeed;
 	private float targetSpeed;
 	private Vector2 amountToMove;
+
+	private Animator PAnim;
 	
 	private PlayerPhysics playerPhysics;
 	
 
 	void Start () {
 		playerPhysics = GetComponent<PlayerPhysics>();
+		PAnim = GetComponent<Animator> ();
 	}
 	
 	void Update () {
 		targetSpeed = Input.GetAxisRaw("Horizontal") * speed;
 		currentSpeed = IncrementTowards(currentSpeed, targetSpeed,acceleration);
-		
+		if (currentSpeed > 0) {
+
+			PAnim.SetBool ("Run", true);
+		} else {PAnim.SetBool ("Run", false);
+		}
 		if (playerPhysics.grounded) {
 			amountToMove.y = 0;
 			
