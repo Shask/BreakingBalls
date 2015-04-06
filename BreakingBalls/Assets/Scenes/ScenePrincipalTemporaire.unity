@@ -331,6 +331,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cad93261782db4479743207adec2eb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  players: []
+  cameraInitialSize: 5
+  cameraMaxSize: 13
+  margin: 3
+  platforms: []
 --- !u!1001 &1476272550
 Prefab:
   m_ObjectHideFlags: 0
