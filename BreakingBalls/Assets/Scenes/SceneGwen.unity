@@ -253,9 +253,6 @@ MonoBehaviour:
   - {fileID: 1074428318}
   - {fileID: 3302216}
   - {fileID: 173674328}
-  boxCollider: {fileID: 0}
-  image: {fileID: 0}
-  srImage: {fileID: 0}
 --- !u!81 &378043267
 AudioListener:
   m_ObjectHideFlags: 0
