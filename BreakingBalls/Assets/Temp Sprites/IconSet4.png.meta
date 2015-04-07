@@ -1,0 +1,166 @@
+fileFormatVersion: 2
+guid: dec1dcf5821ca4541813976d27e827ea
+timeCreated: 1428337659
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: IconSet4_0
+    21300002: IconSet4_1
+    21300004: IconSet4_2
+    21300006: IconSet4_3
+    21300008: IconSet4_4
+    21300010: IconSet4_5
+    21300012: IconSet4_6
+    21300014: IconSet4_7
+    21300016: IconSet4_8
+    21300018: IconSet4_9
+    21300020: IconSet4_10
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: IconSet4_0
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 5
+        width: 46
+        height: 46
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: IconSet4_1
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 5
+        width: 45
+        height: 45
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: IconSet4_2
+      rect:
+        serializedVersion: 2
+        x: 190
+        y: 5
+        width: 46
+        height: 47
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: IconSet4_4
+      rect:
+        serializedVersion: 2
+        x: 283
+        y: 5
+        width: 46
+        height: 46
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: IconSet4_5
+      rect:
+        serializedVersion: 2
+        x: 376
+        y: 5
+        width: 44
+        height: 45
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: IconSet4_6
+      rect:
+        serializedVersion: 2
+        x: 469
+        y: 5
+        width: 47
+        height: 48
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: IconSet4_7
+      rect:
+        serializedVersion: 2
+        x: 562
+        y: 5
+        width: 46
+        height: 46
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: IconSet4_8
+      rect:
+        serializedVersion: 2
+        x: 655
+        y: 5
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: IconSet4_9
+      rect:
+        serializedVersion: 2
+        x: 749
+        y: 7
+        width: 44
+        height: 45
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: IconSet4_10
+      rect:
+        serializedVersion: 2
+        x: 841
+        y: 5
+        width: 45
+        height: 47
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
