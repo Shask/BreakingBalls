@@ -68,4 +68,9 @@ public class PlayerController : MonoBehaviour {
 			return (dir == Mathf.Sign(target-n))? n: target; // if n has now passed target then return target, otherwise return n
 		}
 	}
+
+	void OnTriggerEnter(Collider other) {
+		print ("coucou");
+		Destroy (this);
+	}
 }

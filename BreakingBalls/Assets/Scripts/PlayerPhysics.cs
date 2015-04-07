@@ -66,5 +66,6 @@ public class PlayerPhysics : MonoBehaviour {
 		
 		transform.Translate(finalTransform);
 	}
+
 	
 }
