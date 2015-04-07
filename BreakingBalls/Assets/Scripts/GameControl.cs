@@ -9,27 +9,10 @@ public class GameControl : MonoBehaviour {
 	public float cameraMaxSize = 13;
 	public float margin = 3;
 
-	public Transform[] platforms;
-
 	// Use this for initialization
 	void Start () {
-		resizeColliderPlatforms ();
 	}
 
-	void resizeColliderPlatforms()
-	{
-		BoxCollider boxCollider;
-		Transform image;
-		SpriteRenderer srImage;
-
-		foreach (Transform p in platforms) {
-			boxCollider = p.GetComponent<BoxCollider>();
-			image = p.GetChild (0);
-			srImage = image.GetComponent<SpriteRenderer>();
-			boxCollider.size = new Vector3(srImage.bounds.size.x / p.localScale.x, srImage.bounds.size.y / p.localScale.y, boxCollider.size.z);
-			boxCollider.center = new Vector3((image.position.x - p.position.x) / p.localScale.x, (image.position.y - p.position.y) / p.localScale.y, boxCollider.center.z);
-		}
-	}
 	
 	// Update is called once per frame
 	void Update () {
