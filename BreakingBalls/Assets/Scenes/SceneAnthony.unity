@@ -336,6 +336,7 @@ MonoBehaviour:
   cameraInitialSize: 5
   cameraMaxSize: 13
   margin: 8
+  nbSecLostByRespawn: 2
 --- !u!81 &378043267
 AudioListener:
   m_ObjectHideFlags: 0
@@ -1359,9 +1360,9 @@ GameObject:
   m_Component:
   - 4: {fileID: 1146635154}
   - 212: {fileID: 1146635157}
-  - 135: {fileID: 1146635156}
   - 114: {fileID: 1146635155}
   - 65: {fileID: 1146635158}
+  - 135: {fileID: 1146635156}
   m_Layer: 8
   m_Name: Enemy 1
   m_TagString: Untagged
@@ -1376,7 +1377,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1146635153}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.26999998, y: 2, z: -.100000001}
+  m_LocalPosition: {x: -3, y: 0, z: -.100000001}
   m_LocalScale: {x: .300000012, y: .300000012, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1400,9 +1401,9 @@ SphereCollider:
   m_GameObject: {fileID: 1146635153}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
-  m_Radius: .600000024
+  m_Radius: .610000014
   m_Center: {x: -.100000001, y: .150000006, z: 0}
 --- !u!212 &1146635157
 SpriteRenderer:
@@ -1438,7 +1439,7 @@ BoxCollider:
   m_GameObject: {fileID: 1146635153}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 4.5, y: 4.5, z: .200000003}
   m_Center: {x: 0, y: 0, z: 0}
