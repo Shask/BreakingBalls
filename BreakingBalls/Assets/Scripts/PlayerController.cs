@@ -25,29 +25,35 @@ public class PlayerController : MonoBehaviour {
 	}
 	
 	void Update () {
+
+		if (!playerPhysics.grounded) 
+			PAnim.SetBool ("Jump", true);
+
 		targetSpeed = Input.GetAxisRaw("Horizontal") * speed;
 		currentSpeed = IncrementTowards(currentSpeed, targetSpeed,acceleration);
-		if (currentSpeed > 0) {
+		if (currentSpeed > 0 && playerPhysics.grounded) {
 			PAnim.CrossFade("StickFigureRun",0.0f);
 			PAnim.SetBool ("Run", true);
 			PAnim.SetBool ("RunBack", false);
 		}
-		if (currentSpeed <0) {
+		if (currentSpeed <0 && playerPhysics.grounded) {
 			PAnim.CrossFade("StickFigureRunBack",0.0f);
 			PAnim.SetBool ("Run", true);
 			PAnim.SetBool ("RunBack", true);
 		} 
-		if (currentSpeed ==0) {
+		if (currentSpeed ==0 && playerPhysics.grounded) {
 			PAnim.CrossFade("StickFigureIddle",0.0f);
 			PAnim.SetBool ("Run", false);
 			PAnim.SetBool ("RunBack", false);
 		} 
 
 		if (playerPhysics.grounded) {
+			PAnim.SetBool ("Jump", false);
 			amountToMove.y = 0;
-			
+
 			// Jump
 			if (Input.GetButtonDown("Jump")) {
+
 				amountToMove.y = jumpHeight;	
 			}
 		}
