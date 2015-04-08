@@ -9,14 +9,19 @@ public class GameControl : MonoBehaviour {
 	private float hwRatio = 2; // Ratio between height and width screen size
 	public float cameraMaxSize = 13;
 	public float margin = 3;
+	public int nbSecLostByRespawn = 2;
 
 	private float counter = 0;
 	private Text counterText;
+	private Text player1MalusText;
 
+	private GameObject player1;
 
 	// Use this for initialization
 	void Start () {
 		counterText = GameObject.Find("CounterText").GetComponent<Text>();
+		player1MalusText = GameObject.Find("P1MalusText").GetComponent<Text>();
+		player1 = GameObject.Find ("Player1");
 	}
 
 	
@@ -28,6 +33,7 @@ public class GameControl : MonoBehaviour {
 		                                 Mathf.Floor(counter / 60),
 		                                 Mathf.Floor(counter) % 60,
 		                                 Mathf.Floor((counter*100) % 100));
+		player1MalusText.text = "Malus : " + (player1.GetComponent<PlayerController> ().nbRespawn * 2) + "s";
 	}
 
 	void ResizeCamera(){
@@ -114,9 +120,8 @@ public class GameControl : MonoBehaviour {
 				lastPlayer = p;
 			}
 		}
-		Debug.Log (lastPlayer.name);
-		PlayerController pc = lastPlayer.GetComponent<PlayerController> ();
-		pc.Respawn();
+
+		lastPlayer.GetComponent<PlayerController> ().Respawn();
 	}
 
 	void GameOver()
