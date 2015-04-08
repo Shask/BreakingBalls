@@ -27,8 +27,8 @@ public class PlayerController : MonoBehaviour {
 	
 	void Update () {
 
-		if (!playerPhysics.grounded) 
-			PAnim.SetBool ("Jump", true);
+
+
 
 		targetSpeed = Input.GetAxisRaw("Horizontal") * speed;
 		currentSpeed = IncrementTowards(currentSpeed, targetSpeed,acceleration);
@@ -49,12 +49,11 @@ public class PlayerController : MonoBehaviour {
 		} 
 
 		if (playerPhysics.grounded) {
-			PAnim.SetBool ("Jump", false);
 			amountToMove.y = 0;
 
 			// Jump
 			if (Input.GetButtonDown("Jump")) {
-
+				PAnim.SetTrigger ("Jump");
 				amountToMove.y = jumpHeight;	
 			}
 		}
