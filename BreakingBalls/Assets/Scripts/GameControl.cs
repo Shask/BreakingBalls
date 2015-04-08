@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class GameControl : MonoBehaviour {
@@ -9,14 +10,24 @@ public class GameControl : MonoBehaviour {
 	public float cameraMaxSize = 13;
 	public float margin = 3;
 
+	private float counter = 0;
+	private Text counterText;
+
+
 	// Use this for initialization
 	void Start () {
+		counterText = GameObject.Find("CounterText").GetComponent<Text>();
 	}
 
 	
 	// Update is called once per frame
 	void Update () {
 		ResizeCamera ();
+		counter += Time.deltaTime;
+		counterText.text = string.Format("{0:#0}:{1:00}.{2:00}",
+		                                 Mathf.Floor(counter / 60),
+		                                 Mathf.Floor(counter) % 60,
+		                                 Mathf.Floor((counter*100) % 100));
 	}
 
 	void ResizeCamera(){
