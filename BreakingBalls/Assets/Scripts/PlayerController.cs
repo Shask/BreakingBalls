@@ -66,6 +66,7 @@ public class PlayerController : MonoBehaviour {
 	public void Respawn()
 	{
 		nbRespawn ++;
+		Debug.Log (nbRespawn);
 
 		GameObject[] platforms = GameObject.FindGameObjectsWithTag ("Platform");
 		float cameraPositionX = Camera.main.transform.position.x;
