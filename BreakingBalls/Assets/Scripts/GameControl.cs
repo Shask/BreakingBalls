@@ -16,6 +16,10 @@ public class GameControl : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		ResizeCamera ();
+	}
+
+	void ResizeCamera(){
 		float cameraSize = Camera.main.orthographicSize;
 		float cameraLength = cameraSize * hwRatio;
 		float cameraX = transform.position.x;
@@ -100,7 +104,8 @@ public class GameControl : MonoBehaviour {
 			}
 		}
 		Debug.Log (lastPlayer.name);
-		GameOver (); // lastPlayer.Respawn();
+		PlayerController pc = lastPlayer.GetComponent<PlayerController> ();
+		pc.Respawn();
 	}
 
 	void GameOver()

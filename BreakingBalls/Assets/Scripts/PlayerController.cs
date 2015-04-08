@@ -17,7 +17,8 @@ public class PlayerController : MonoBehaviour {
 	private Animator PAnim;
 	
 	private PlayerPhysics playerPhysics;
-	
+
+	public int nbRespawn = 0;
 
 	void Start () {
 		playerPhysics = GetComponent<PlayerPhysics>();
@@ -56,7 +57,30 @@ public class PlayerController : MonoBehaviour {
 		amountToMove.y -= gravity * Time.deltaTime;
 		playerPhysics.Move(amountToMove * Time.deltaTime);
 	}
-	
+
+	public void Respawn()
+	{
+		nbRespawn ++;
+
+		GameObject[] platforms = GameObject.FindGameObjectsWithTag ("Platform");
+		float cameraPositionX = Camera.main.transform.position.x;
+		GameObject respawnPlatform = platforms [0];
+		float newDistance = Mathf.Abs(cameraPositionX - (respawnPlatform.GetComponent<BoxCollider>().center.x * respawnPlatform.transform.localScale.x));
+
+		foreach (GameObject p in platforms) {
+			float positionX = p.GetComponent<BoxCollider>().center.x * p.transform.localScale.x;
+			float distance = Mathf.Abs (cameraPositionX - positionX);
+			if(distance < newDistance){
+				respawnPlatform = p;
+				newDistance = distance;
+			}
+		}
+
+		Vector3 scale = respawnPlatform.transform.localScale;
+		Vector3 newPosition = respawnPlatform.GetComponent<BoxCollider> ().center;
+		transform.position = new Vector3 (newPosition.x * scale.x, (newPosition.y + respawnPlatform.GetComponent<BoxCollider> ().size.y + 5) * scale.y, newPosition.z * scale.y);
+	}
+
 	// Increase n towards target by speed
 	private float IncrementTowards(float n, float target, float a) {
 		if (n == target) {
