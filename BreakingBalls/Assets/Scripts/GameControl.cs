@@ -13,27 +13,21 @@ public class GameControl : MonoBehaviour {
 
 	private float counter = 0;
 	private Text counterText;
-	private Text player1MalusText;
-
-	private GameObject player1;
 
 	// Use this for initialization
 	void Start () {
 		counterText = GameObject.Find("CounterText").GetComponent<Text>();
-		player1MalusText = GameObject.Find("P1MalusText").GetComponent<Text>();
-		player1 = GameObject.Find ("Player1");
-	}
 
+	}
 	
 	// Update is called once per frame
 	void Update () {
 		ResizeCamera ();
 		counter += Time.deltaTime;
-		counterText.text = string.Format("{0:#0}:{1:00}.{2:00}",
-		                                 Mathf.Floor(counter / 60),
-		                                 Mathf.Floor(counter) % 60,
-		                                 Mathf.Floor((counter*100) % 100));
-		player1MalusText.text = "Malus : " + (player1.GetComponent<PlayerController> ().nbRespawn * 2) + "s";
+		counterText.text = string.Format ("{0:#0}:{1:00}.{2:00}",
+		                                 Mathf.Floor (counter / 60),
+		                                 Mathf.Floor (counter) % 60,
+		                                 Mathf.Floor ((counter * 100) % 100));
 	}
 
 	void ResizeCamera(){

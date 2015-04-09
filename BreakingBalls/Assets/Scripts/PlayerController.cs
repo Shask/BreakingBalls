@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(PlayerPhysics))]
 public class PlayerController : MonoBehaviour {
@@ -9,6 +10,8 @@ public class PlayerController : MonoBehaviour {
 	public float speed = 8;
 	public float acceleration = 30;
 	public float jumpHeight = 12;
+
+	public int playerNo = 1;
 	
 	private float currentSpeed;
 	private float targetSpeed;
@@ -20,30 +23,37 @@ public class PlayerController : MonoBehaviour {
 
 	public int nbRespawn = 0;
 
+	private bool isMoving = true;
+	private float delayMoving;
+
 	void Start () {
 		playerPhysics = GetComponent<PlayerPhysics>();
 		PAnim = GetComponent<Animator> ();
 	}
 	
 	void Update () {
+		if (!isMoving) {
+			delayMoving -= Time.deltaTime;
+			if (delayMoving <= 0)
+				isMoving = true;
+			else
+				return;
+		}
 
-
-
-
-		targetSpeed = Input.GetAxisRaw("Horizontal") * speed;
-		currentSpeed = IncrementTowards(currentSpeed, targetSpeed,acceleration);
+		targetSpeed = Input.GetAxisRaw ("Horizontal") * speed;
+		currentSpeed = IncrementTowards (currentSpeed, targetSpeed, acceleration);
 		if (currentSpeed > 0 && playerPhysics.grounded) {
-			PAnim.CrossFade("StickFigureRun",0.0f);
+			PAnim.CrossFade ("StickFigureRun", 0.0f);
 			PAnim.SetBool ("Run", true);
 			PAnim.SetBool ("RunBack", false);
 		}
-		if (currentSpeed <0 && playerPhysics.grounded) {
-			PAnim.CrossFade("StickFigureRunBack",0.0f);
+		if (currentSpeed < 0 && playerPhysics.grounded) {
+			PAnim.CrossFade ("StickFigureRunBack", 0.0f);
 			PAnim.SetBool ("Run", true);
 			PAnim.SetBool ("RunBack", true);
 		} 
-		if (currentSpeed ==0 && playerPhysics.grounded) {
-			PAnim.CrossFade("StickFigureIddle",0.0f);
+		if (currentSpeed == 0 && playerPhysics.grounded) {
+			PAnim.CrossFade ("StickFigureIddle", 0.0f);
 			PAnim.SetBool ("Run", false);
 			PAnim.SetBool ("RunBack", false);
 		} 
@@ -52,7 +62,7 @@ public class PlayerController : MonoBehaviour {
 			amountToMove.y = 0;
 
 			// Jump
-			if (Input.GetButtonDown("Jump")) {
+			if (Input.GetButtonDown ("Jump")) {
 				PAnim.SetTrigger ("Jump");
 				amountToMove.y = jumpHeight;	
 			}
@@ -60,13 +70,24 @@ public class PlayerController : MonoBehaviour {
 		
 		amountToMove.x = currentSpeed;
 		amountToMove.y -= gravity * Time.deltaTime;
-		playerPhysics.Move(amountToMove * Time.deltaTime);
+		playerPhysics.Move (amountToMove * Time.deltaTime);
+
+		if (transform.position.y < -15) {
+			Respawn ();
+		}
+		
 	}
 
 	public void Respawn()
 	{
+		if (!isMoving) {
+			return;
+		}
+
+		isMoving = false;
+		delayMoving = 0.1f;
+
 		nbRespawn ++;
-		Debug.Log (nbRespawn);
 
 		GameObject[] platforms = GameObject.FindGameObjectsWithTag ("Platform");
 		float cameraPositionX = Camera.main.transform.position.x;
@@ -81,10 +102,13 @@ public class PlayerController : MonoBehaviour {
 				newDistance = distance;
 			}
 		}
-
+		Debug.Log (playerNo + " - " + respawnPlatform.name);
 		Vector3 scale = respawnPlatform.transform.localScale;
 		Vector3 newPosition = respawnPlatform.GetComponent<BoxCollider> ().center;
 		transform.position = new Vector3 (newPosition.x * scale.x, (newPosition.y + respawnPlatform.GetComponent<BoxCollider> ().size.y + 5) * scale.y, newPosition.z * scale.y);
+
+		Text playerMalusText = GameObject.Find("P"+playerNo+"MalusText").GetComponent<Text>();
+		playerMalusText.text = "Malus : +" + (nbRespawn * 2) + "s";
 	}
 
 	// Increase n towards target by speed
