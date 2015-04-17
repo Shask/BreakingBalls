@@ -39,9 +39,14 @@ public class PlayerController : MonoBehaviour {
 			else
 				return;
 		}
-
+		if (playerPhysics.movementStopped) {
+			targetSpeed=0;
+			currentSpeed=0;
+		}
 		targetSpeed = Input.GetAxisRaw ("Horizontal") * speed;
 		currentSpeed = IncrementTowards (currentSpeed, targetSpeed, acceleration);
+
+
 		if (currentSpeed > 0 && playerPhysics.grounded) {
 			PAnim.CrossFade ("StickFigureRun", 0.0f);
 			PAnim.SetBool ("Run", true);
