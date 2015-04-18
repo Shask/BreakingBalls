@@ -13,6 +13,7 @@ GameObject:
   - 114: {fileID: 11482308}
   - 212: {fileID: 21232708}
   - 95: {fileID: 9527920}
+  - 54: {fileID: 5475380}
   m_Layer: 10
   m_Name: Player1
   m_TagString: Player
@@ -32,6 +33,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!54 &5475380
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 162982}
+  serializedVersion: 2
+  m_Mass: 5
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!65 &6509362
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -39,7 +55,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 162982}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 2.20000005, z: 1}
@@ -53,7 +69,7 @@ Animator:
   m_GameObject: {fileID: 162982}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 22100000, guid: e4a5907beab5f004fbe317ff7cb44dae, type: 2}
+  m_Controller: {fileID: 9100000, guid: 36bdd23292c964743ac240b1b168baa5, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -76,6 +92,7 @@ MonoBehaviour:
   speed: 8
   acceleration: 100
   jumpHeight: 12
+  playerNo: 1
   nbRespawn: 0
 --- !u!114 &11487004
 MonoBehaviour:
@@ -90,8 +107,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collisionMask:
     serializedVersion: 2
-    m_Bits: 4294967039
+    m_Bits: 4294964223
   grounded: 0
+  movementStopped: 0
 --- !u!212 &21232708
 SpriteRenderer:
   m_ObjectHideFlags: 1

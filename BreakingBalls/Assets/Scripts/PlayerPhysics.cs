@@ -15,6 +15,7 @@ public class PlayerPhysics : MonoBehaviour {
 	
 	[HideInInspector]
 	public bool grounded;
+	public bool movementStopped;
 	
 	Ray ray;
 	RaycastHit hit;
@@ -35,21 +36,20 @@ public class PlayerPhysics : MonoBehaviour {
 		grounded = false;
 		
 		for (int i = 0; i<3; i ++) {
-			float dir = Mathf.Sign(deltaY);
-			float x = (p.x + c.x - s.x/2) + s.x/2 * i; // Left, centre and then rightmost point of collider
-			float y = p.y + c.y + s.y/2 * dir; // Bottom of collider
+			float dir = Mathf.Sign (deltaY);
+			float x = (p.x + c.x - s.x / 2) + s.x / 2 * i; // Left, centre and then rightmost point of collider
+			float y = p.y + c.y + s.y / 2 * dir; // Bottom of collider
 			
-			ray = new Ray(new Vector2(x,y), new Vector2(0,dir));
-			Debug.DrawRay(ray.origin,ray.direction);
-			if (Physics.Raycast(ray,out hit,Mathf.Abs(deltaY),collisionMask)){
+			ray = new Ray (new Vector2 (x, y), new Vector2 (0, dir));
+			Debug.DrawRay (ray.origin, ray.direction);
+			if (Physics.Raycast (ray, out hit, Mathf.Abs (deltaY) + skin, collisionMask)) {
 				// Get Distance between player and ground
 				float dst = Vector3.Distance (ray.origin, hit.point);
 				
 				// Stop player's downwards movement after coming within skin width of a collider
 				if (dst > skin) {
-					deltaY = dst * dir + skin;
-				}
-				else {
+					deltaY = dst * dir - skin * dir;
+				} else {
 					deltaY = 0;
 				}
 				
@@ -59,14 +59,41 @@ public class PlayerPhysics : MonoBehaviour {
 				
 			}
 		}
-		
-	
-		
-		Vector2 finalTransform = new Vector2(deltaX,deltaY);
-		
-		transform.Translate(finalTransform);
-	}
+		// Check collisions left and roght
 
+		movementStopped = false;
+		for (int i = 0; i<3; i ++) {
+			float dir = Mathf.Sign (deltaX);
+			float x = p.x + c.x + s.x / 2 * dir; // Left, centre and then rightmost point of collider
+			float y = p.y + c.y - s.y / 2 + s.y / 2 * i;
+			
+			ray = new Ray (new Vector2 (x, y), new Vector2 (dir, 0));
+			Debug.DrawRay (ray.origin, ray.direction);
+			if (Physics.Raycast (ray, out hit, Mathf.Abs (deltaX) + skin, collisionMask)) {
+				// Get Distance between player and ground
+				float dst = Vector3.Distance (ray.origin, hit.point);
+				
+				// Stop player's downwards movement after coming within skin width of a collider
+				if (dst > skin) {
+					deltaX = dst * dir - skin * dir;
+				} else {
+					deltaX = 0;
+				}
+
+				movementStopped=true;
+				break;
+				
+			}
+		}
+
+		Vector3 playerDir = new Vector3 (deltaX, deltaY);
+		Vector3 o = new Vector3 (p.x + c.x + s.x / 2 * Mathf.Sign (deltaX), p.y + c.y + s.y / 2 * Mathf.Sign (deltaY));
+		Debug.DrawRay (o, playerDir.normalized);
+		
+			Vector2 finalTransform = new Vector2 (deltaX, deltaY);
+		
+			transform.Translate (finalTransform);
+		}
 
 	
 }
