@@ -10,6 +10,7 @@ public class Firefox : MonoBehaviour {
 	private float _nextShotInSecond;
 	private FireBolt projectile;
 	private Transform destination;
+
 	// Use this for initialization
 	void Start () {
 		translateur = new Vector3 (0, 5, 0);

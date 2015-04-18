@@ -64,6 +64,7 @@ public class PlayerPhysics : MonoBehaviour {
 		movementStopped = false;
 		for (int i = 0; i<3; i ++) {
 			float dir = Mathf.Sign (deltaX);
+			if(transform.localRotation.y!=00)dir=-dir;
 			float x = p.x + c.x + s.x / 2 * dir; // Left, centre and then rightmost point of collider
 			float y = p.y + c.y - s.y / 2 + s.y / 2 * i;
 			
@@ -85,9 +86,10 @@ public class PlayerPhysics : MonoBehaviour {
 				
 			}
 		}
-
+		float dir2 = Mathf.Sign (deltaX);
+		if(transform.localRotation.y!=00)dir2=-dir2;
 		Vector3 playerDir = new Vector3 (deltaX, deltaY);
-		Vector3 o = new Vector3 (p.x + c.x + s.x / 2 * Mathf.Sign (deltaX), p.y + c.y + s.y / 2 * Mathf.Sign (deltaY));
+		Vector3 o = new Vector3 (p.x + c.x + s.x / 2 * dir2, p.y + c.y + s.y / 2 * Mathf.Sign (deltaY));
 		Debug.DrawRay (o, playerDir.normalized);
 		
 			Vector2 finalTransform = new Vector2 (deltaX, deltaY);
