@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour {
 	private float currentSpeed;
 	private float targetSpeed;
 	private Vector2 amountToMove;
-
+	private bool backwards = false;
 	private Animator PAnim;
 	
 	private PlayerPhysics playerPhysics;
@@ -47,33 +47,41 @@ public class PlayerController : MonoBehaviour {
 		currentSpeed = IncrementTowards (currentSpeed, targetSpeed, acceleration);
 
 
-		if (currentSpeed > 0 && playerPhysics.grounded) {
-			PAnim.CrossFade ("StickFigureRun", 0.0f);
-			PAnim.SetBool ("Run", true);
-			PAnim.SetBool ("RunBack", false);
+
+		if (currentSpeed < 0) {
+			Quaternion therotation = transform.localRotation;
+			therotation.y = 180;
+			transform.localRotation = therotation;
 		}
-		if (currentSpeed < 0 && playerPhysics.grounded) {
-			PAnim.CrossFade ("StickFigureRunBack", 0.0f);
-			PAnim.SetBool ("Run", true);
-			PAnim.SetBool ("RunBack", true);
-		} 
-		if (currentSpeed == 0 && playerPhysics.grounded) {
-			PAnim.CrossFade ("StickFigureIddle", 0.0f);
-			PAnim.SetBool ("Run", false);
-			PAnim.SetBool ("RunBack", false);
-		} 
+		if (currentSpeed > 0) {
+			Quaternion therotation = transform.localRotation;
+			therotation.y = 0;
+			transform.localRotation= therotation;
+		}
+
 
 		if (playerPhysics.grounded) {
 			amountToMove.y = 0;
+			if (currentSpeed == 0) {
+				PAnim.CrossFade ("StickFigureIddle", 0.0f);
+				PAnim.SetBool ("Run", false);
+			} else 
+			{
+				PAnim.CrossFade ("StickFigureRun", 0.0f);
+				PAnim.SetBool ("Run", true);
 
-			// Jump
+			}
 			if (Input.GetButtonDown ("Jump")) {
 				PAnim.SetTrigger ("Jump");
 				amountToMove.y = jumpHeight;	
 			}
 		}
+
+			
+
+
 		
-		amountToMove.x = currentSpeed;
+		amountToMove.x = Mathf.Abs(currentSpeed);
 		amountToMove.y -= gravity * Time.deltaTime;
 		playerPhysics.Move (amountToMove * Time.deltaTime);
 
