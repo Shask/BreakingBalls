@@ -77,7 +77,7 @@ public class PlayerController : MonoBehaviour {
 		amountToMove.y -= gravity * Time.deltaTime;
 		playerPhysics.Move (amountToMove * Time.deltaTime);
 
-		if (transform.position.y < -15) {
+		if (transform.position.y < -50) {
 			Respawn ();
 		}
 	}
@@ -110,11 +110,6 @@ public class PlayerController : MonoBehaviour {
 
 		Vector3 scale = respawnPlatform.transform.localScale;
 		Vector3 newPosition = respawnPlatform.GetComponent<BoxCollider> ().center;
-
-		Debug.Log ("positionX : " + newPosition.x * scale.x);
-		Debug.Log ("positionBoxColliderX : " + respawnPlatform.GetComponent<BoxCollider> ().center.x);
-		Debug.Log ("positionPlatformX : " + respawnPlatform.transform.position.x);
-		Debug.Log ("positionPlatformLocalX : " + respawnPlatform.transform.localPosition.x);
 
 		transform.position = new Vector3 (respawnPlatform.transform.position.x + (newPosition.x * scale.x), respawnPlatform.transform.position.y + (newPosition.y + respawnPlatform.GetComponent<BoxCollider> ().size.y + 5) * scale.y, transform.position.z);
 

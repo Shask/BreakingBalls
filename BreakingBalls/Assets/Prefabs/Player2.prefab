@@ -67,7 +67,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 141960}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d7160003a0cb4874c8ba75c38bf8ce96, type: 3}
   m_Name: 
@@ -76,6 +76,7 @@ MonoBehaviour:
   speed: 8
   acceleration: 100
   jumpHeight: 12
+  playerNo: 1
   nbRespawn: 0
 --- !u!114 &11453970
 MonoBehaviour:
@@ -92,6 +93,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294964223
   grounded: 0
+  movementStopped: 0
 --- !u!212 &21245106
 SpriteRenderer:
   m_ObjectHideFlags: 1
