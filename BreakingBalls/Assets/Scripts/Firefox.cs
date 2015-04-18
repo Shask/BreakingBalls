@@ -35,8 +35,8 @@ public class Firefox : MonoBehaviour {
 			return;
 
 		_nextShotInSecond = 50f;
-		bolt = (FireBolt)Instantiate(projectile,transform.position,transform.rotation);
-		bolt.Initialize (destination, 0.25f, transform.position);
+	//	bolt = (FireBolt)Instantiate(projectile,transform.position,transform.rotation);
+	//	bolt.Initialize (destination, 0.25f, transform.position);
 	}
 
 	void OnTriggerEnter(Collider other) {

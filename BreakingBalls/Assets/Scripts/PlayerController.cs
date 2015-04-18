@@ -75,7 +75,6 @@ public class PlayerController : MonoBehaviour {
 		if (transform.position.y < -15) {
 			Respawn ();
 		}
-		
 	}
 
 	public void Respawn()
@@ -92,10 +91,10 @@ public class PlayerController : MonoBehaviour {
 		GameObject[] platforms = GameObject.FindGameObjectsWithTag ("Platform");
 		float cameraPositionX = Camera.main.transform.position.x;
 		GameObject respawnPlatform = platforms [0];
-		float newDistance = Mathf.Abs(cameraPositionX - (respawnPlatform.GetComponent<BoxCollider>().center.x * respawnPlatform.transform.localScale.x));
+		float newDistance = Mathf.Abs(cameraPositionX - respawnPlatform.transform.position.x - (respawnPlatform.GetComponent<BoxCollider>().center.x * respawnPlatform.transform.localScale.x));
 
 		foreach (GameObject p in platforms) {
-			float positionX = p.GetComponent<BoxCollider>().center.x * p.transform.localScale.x;
+			float positionX = p.transform.position.x + p.GetComponent<BoxCollider>().center.x * p.transform.localScale.x;
 			float distance = Mathf.Abs (cameraPositionX - positionX);
 			if(distance < newDistance){
 				respawnPlatform = p;
@@ -103,9 +102,16 @@ public class PlayerController : MonoBehaviour {
 			}
 		}
 		Debug.Log (playerNo + " - " + respawnPlatform.name);
+
 		Vector3 scale = respawnPlatform.transform.localScale;
 		Vector3 newPosition = respawnPlatform.GetComponent<BoxCollider> ().center;
-		transform.position = new Vector3 (newPosition.x * scale.x, (newPosition.y + respawnPlatform.GetComponent<BoxCollider> ().size.y + 5) * scale.y, newPosition.z * scale.y);
+
+		Debug.Log ("positionX : " + newPosition.x * scale.x);
+		Debug.Log ("positionBoxColliderX : " + respawnPlatform.GetComponent<BoxCollider> ().center.x);
+		Debug.Log ("positionPlatformX : " + respawnPlatform.transform.position.x);
+		Debug.Log ("positionPlatformLocalX : " + respawnPlatform.transform.localPosition.x);
+
+		transform.position = new Vector3 (respawnPlatform.transform.position.x + (newPosition.x * scale.x), respawnPlatform.transform.position.y + (newPosition.y + respawnPlatform.GetComponent<BoxCollider> ().size.y + 5) * scale.y, transform.position.z);
 
 		Text playerMalusText = GameObject.Find("P"+playerNo+"MalusText").GetComponent<Text>();
 		playerMalusText.text = "Malus : +" + (nbRespawn * 2) + "s";
