@@ -26,6 +26,8 @@ public class PlayerController : MonoBehaviour {
 	private bool isMoving = true;
 	private float delayMoving;
 
+	private string inputHorizontal,inputJump;
+
 
 	float timerItem=0;
 	bool onItem=false;
@@ -39,6 +41,9 @@ public class PlayerController : MonoBehaviour {
 		playerPhysics = GetComponent<PlayerPhysics>();
 		PAnim = GetComponent<Animator> ();
 		ItemInit ();
+		inputHorizontal = "Horizontal"+playerNo;
+		inputJump="Jump"+playerNo;
+
 	}
 	
 	void Update () {
@@ -58,7 +63,7 @@ public class PlayerController : MonoBehaviour {
 			targetSpeed=0;
 			currentSpeed=0;
 		}
-		targetSpeed = Input.GetAxisRaw ("Horizontal") * speed;
+		targetSpeed = Input.GetAxisRaw (inputHorizontal) * speed;
 		currentSpeed = IncrementTowards (currentSpeed, targetSpeed, acceleration);
 
 
@@ -86,7 +91,7 @@ public class PlayerController : MonoBehaviour {
 				PAnim.SetBool ("Run", true);
 
 			}
-			if (Input.GetButtonDown ("Jump")) {
+			if (Input.GetButtonDown (inputJump)) {
 				PAnim.SetTrigger ("Jump");
 				amountToMove.y = jumpHeight;	
 			}
