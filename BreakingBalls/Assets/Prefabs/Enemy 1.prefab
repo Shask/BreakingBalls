@@ -12,7 +12,7 @@ GameObject:
   - 114: {fileID: 11464854}
   - 65: {fileID: 6523256}
   - 135: {fileID: 13547534}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: Enemy 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31,7 +31,7 @@ GameObject:
   - 114: {fileID: 11426294}
   - 65: {fileID: 6539192}
   - 135: {fileID: 13562400}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: Projectile FireBolt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -57,7 +57,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100896}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 30, y: 10, z: -.100000001}
+  m_LocalPosition: {x: -93.3000031, y: 23.8099995, z: -.100000001}
   m_LocalScale: {x: .300000012, y: .300000012, z: 1}
   m_Children:
   - {fileID: 435792}
@@ -118,7 +118,7 @@ SphereCollider:
   m_GameObject: {fileID: 100896}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: .610000014
   m_Center: {x: -.100000001, y: .150000006, z: -.100000001}
