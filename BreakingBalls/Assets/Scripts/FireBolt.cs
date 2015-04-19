@@ -15,22 +15,22 @@ public class FireBolt : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		//r.enabled = false;
+		maposition = transform.position;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if(move)
+		if (move) {
 			//transform.Translate (new Vector3(-1f,0f,-0f) * speed * Time.deltaTime);
-			transform.Translate(target * speed * Time.deltaTime);
+			transform.Translate (target * speed * Time.deltaTime);
+			if ((maposition.x - 25f ) > transform.position.x)
+				Destroy (this.gameObject);
+		}
+
 	}
 
 	void OnTriggerEnter(Collider other) {
-
-		if(other.name.CompareTo("Player1")==0 || other.name.CompareTo("Player2")==0 || other.name.CompareTo("Player3")==0){
-			//Moche mais fonctionnel....
-			other.transform.Translate(new Vector3(0f,-100f,0f));
-			Debug.Log (other.name + ": touché et tué par " + this.name);
-		}
+		other.GetComponent<PlayerController> ().Respawn ();
 		Destroy (this.gameObject);
 	}
 
