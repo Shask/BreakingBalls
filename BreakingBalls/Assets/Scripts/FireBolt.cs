@@ -6,16 +6,16 @@ public class FireBolt : MonoBehaviour {
 	private Vector3 target;//= new Vector3(-10f,0f,0f);
 	private float speed = 2f;
 
-	//public Transform _destination;
+	private float _nextShotInSecond;
+
 	private bool move=false;
 	private Vector3 maposition;
-
-	//public Renderer r;
 
 	// Use this for initialization
 	void Start () {
 		//r.enabled = false;
 		maposition = transform.position;
+		_nextShotInSecond = 7f;
 	}
 	
 	// Update is called once per frame
@@ -23,8 +23,12 @@ public class FireBolt : MonoBehaviour {
 		if (move) {
 			//transform.Translate (new Vector3(-1f,0f,-0f) * speed * Time.deltaTime);
 			transform.Translate (target * speed * Time.deltaTime);
-			if ((maposition.x - 25f ) > transform.position.x)
-				Destroy (this.gameObject);
+			//if ((maposition.x - 25f ) > transform.position.x)
+			if ((_nextShotInSecond -= Time.deltaTime) > 0)
+				return;
+				
+			Destroy (this.gameObject);
+			//transform.Rotate(new Vector3(0f,0f,30f));
 		}
 
 	}
@@ -35,7 +39,11 @@ public class FireBolt : MonoBehaviour {
 	}
 
 	public void setTargetPosition(Vector3 pos){
-		target = pos;
+		target = (pos - transform.position)/5;
+	}
+
+	public void setTargetPosition(){
+		target = new Vector3 (-1f, 0f, -0f);
 	}
 
 	public void setSpeed(float v){

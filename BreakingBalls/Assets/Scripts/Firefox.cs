@@ -13,6 +13,7 @@ public class Firefox : MonoBehaviour {
 	private int nbBolt = 0;
 	private int shoot = 0;
 
+	private GameObject cible;
 
 	private Vector3 maPositionDebut;
 	private FireBolt projectile;
@@ -39,16 +40,18 @@ public class Firefox : MonoBehaviour {
 			return;
 
 		if (shoot>0) {
-			NewBolt (new Vector3(-1f,0f,-0f));
+			//cible le 1er joueur rentré dans la boxCollider
+			NewBolt(cible.transform.position);
+			//horizontal
+			//NewBolt ();
 
 		}
-		_nextShotInSecond = 2.5f;
+		_nextShotInSecond = 2.25f;
 	}
 
 	void OnTriggerEnter(Collider other) {
-		//cible = other.gameObject.transform.position;
+		cible = other.gameObject;
 		shoot ++;
-			
 		//Destroy (this.gameObject);
 	}
 
@@ -60,8 +63,18 @@ public class Firefox : MonoBehaviour {
 	void NewBolt(Vector3 target){
 		//clone = new FireBolt();
 		clone = Instantiate(bolt, transform.position, transform.rotation) as FireBolt;
+		clone.gameObject.SetActive (true);
 		clone.name = "FireBolt " + (++nbBolt);
 		clone.setTargetPosition(target);
+		clone.setSpeed (3f);
+		clone.StartTranslation();
+	}
+
+	void NewBolt(){
+		//clone = new FireBolt();
+		clone = Instantiate(bolt, transform.position, transform.rotation) as FireBolt;
+		clone.name = "FireBolt " + (++nbBolt);
+		clone.setTargetPosition();
 		clone.setSpeed (3f);
 		clone.StartTranslation();
 	}
