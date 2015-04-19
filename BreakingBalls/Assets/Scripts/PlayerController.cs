@@ -26,12 +26,27 @@ public class PlayerController : MonoBehaviour {
 	private bool isMoving = true;
 	private float delayMoving;
 
+
+	float timerItem=0;
+	bool onItem=false;
+	float oldMaxSpeed ;
+	float oldAcceleration ;
+	float oldJump;
+	bool isInvincible ;
+
+
 	void Start () {
 		playerPhysics = GetComponent<PlayerPhysics>();
 		PAnim = GetComponent<Animator> ();
+		ItemInit ();
 	}
 	
 	void Update () {
+		//Si l'item a pris fin, on le delete
+		if (onItem && timerItem <= Time.time) {
+			ItemEnd ();
+		} 
+
 		if (!isMoving) {
 			delayMoving -= Time.deltaTime;
 			if (delayMoving <= 0)
@@ -135,5 +150,31 @@ public class PlayerController : MonoBehaviour {
 			n += a * Time.deltaTime * dir;
 			return (dir == Mathf.Sign(target-n))? n: target; // if n has now passed target then return target, otherwise return n
 		}
+	}
+
+	public void BoostSpeed(float timer)
+	{
+		jumpHeight += 2;
+		speed += 3;
+		acceleration += 100;
+		timerItem = Time.time + timer;
+		onItem = true;
+
+	}
+	void ItemEnd()
+	{
+		speed=oldMaxSpeed;
+		acceleration = oldAcceleration;
+		jumpHeight = oldJump;
+		isInvincible = false;
+		onItem = false;
+	}
+	void ItemInit()
+	{
+		oldJump = jumpHeight;
+		oldMaxSpeed = speed;
+		oldAcceleration = acceleration;
+		isInvincible = false;
+		onItem = false;
 	}
 }
