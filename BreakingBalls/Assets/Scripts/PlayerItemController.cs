@@ -62,6 +62,7 @@ public class PlayerItemController : MonoBehaviour {
 			
 			itemFeedBack = Instantiate (go, gameObject.transform.localPosition, Quaternion.identity) as GameObject; 
 			itemFeedBack.transform.parent = transform;
+			itemFeedBack.transform.rotation=transform.rotation;
 			itemFeedBack.SetActive (true);
 			
 			itemPicked = -1;
