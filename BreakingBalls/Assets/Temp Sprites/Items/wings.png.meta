@@ -1,0 +1,144 @@
+fileFormatVersion: 2
+guid: 51082e4b5dbf29e40b9953b17d53770f
+timeCreated: 1429457752
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: wings_0
+    21300002: wings_1
+    21300004: wings_2
+    21300006: wings_3
+    21300008: wings_4
+    21300010: wings_5
+    21300012: wings_6
+    21300014: wings_7
+    21300016: wings_8
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: wings_0
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 96
+        width: 98
+        height: 109
+      alignment: 9
+      pivot: {x: .812754631, y: .0151859252}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wings_1
+      rect:
+        serializedVersion: 2
+        x: 137
+        y: 98
+        width: 123
+        height: 109
+      alignment: 9
+      pivot: {x: .921039462, y: .102452412}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wings_2
+      rect:
+        serializedVersion: 2
+        x: 302
+        y: 94
+        width: 72
+        height: 75
+      alignment: 8
+      pivot: {x: 1, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wings_3
+      rect:
+        serializedVersion: 2
+        x: 419
+        y: 2
+        width: 68
+        height: 104
+      alignment: 3
+      pivot: {x: 1, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wings_4
+      rect:
+        serializedVersion: 2
+        x: 526
+        y: 13
+        width: 87
+        height: 92
+      alignment: 3
+      pivot: {x: 1, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wings_5
+      rect:
+        serializedVersion: 2
+        x: 655
+        y: 51
+        width: 93
+        height: 87
+      alignment: 9
+      pivot: {x: .840933859, y: .633630514}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wings_6
+      rect:
+        serializedVersion: 2
+        x: 773
+        y: 69
+        width: 111
+        height: 104
+      alignment: 9
+      pivot: {x: .966557682, y: .337400794}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wings_7
+      rect:
+        serializedVersion: 2
+        x: 905
+        y: 93
+        width: 93
+        height: 121
+      alignment: 9
+      pivot: {x: .931849957, y: .124409318}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
