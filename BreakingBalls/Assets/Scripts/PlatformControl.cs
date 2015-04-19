@@ -17,6 +17,8 @@ public class PlatformControl : MonoBehaviour {
 		boxCollider = transform.GetComponent<BoxCollider>();
 		image = transform.GetChild (0);
 		srImage = image.GetComponent<SpriteRenderer>();
+		//transform.position = image.position;
+
 		boxCollider.size = new Vector3(srImage.bounds.size.x / transform.localScale.x, srImage.bounds.size.y / transform.localScale.y, boxCollider.size.z);
 		boxCollider.center = new Vector3((image.position.x - transform.position.x) / transform.localScale.x, (image.position.y - transform.position.y) / transform.localScale.y, boxCollider.center.z);
 	}

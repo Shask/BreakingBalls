@@ -6,6 +6,7 @@ public class Firefox : MonoBehaviour {
 	private float speed = 0.15f;
 	private Vector3 translateur;
 
+<<<<<<< HEAD
 	private float _nextShotInSecond = 0.1f;
 
 	public FireBolt bolt;
@@ -15,6 +16,12 @@ public class Firefox : MonoBehaviour {
 	private Vector3 cible = new Vector3(-1f,0f,-0f);
 
 	private Vector3 maPositionDebut;
+=======
+	private float _nextShotInSecond;
+	private FireBolt projectile;
+	private Transform destination;
+
+>>>>>>> 9763786b310a17eab3eded18d9eec071ce76e853
 	// Use this for initialization
 
 	void Start () {

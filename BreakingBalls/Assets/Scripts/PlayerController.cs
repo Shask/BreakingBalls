@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour {
 	private float currentSpeed;
 	private float targetSpeed;
 	private Vector2 amountToMove;
-
+	private bool backwards = false;
 	private Animator PAnim;
 	
 	private PlayerPhysics playerPhysics;
@@ -26,12 +26,27 @@ public class PlayerController : MonoBehaviour {
 	private bool isMoving = true;
 	private float delayMoving;
 
+
+	float timerItem=0;
+	bool onItem=false;
+	float oldMaxSpeed ;
+	float oldAcceleration ;
+	float oldJump;
+	bool isInvincible ;
+
+
 	void Start () {
 		playerPhysics = GetComponent<PlayerPhysics>();
 		PAnim = GetComponent<Animator> ();
+		ItemInit ();
 	}
 	
 	void Update () {
+		//Si l'item a pris fin, on le delete
+		if (onItem && timerItem <= Time.time) {
+			ItemEnd ();
+		} 
+
 		if (!isMoving) {
 			delayMoving -= Time.deltaTime;
 			if (delayMoving <= 0)
@@ -47,40 +62,47 @@ public class PlayerController : MonoBehaviour {
 		currentSpeed = IncrementTowards (currentSpeed, targetSpeed, acceleration);
 
 
-		if (currentSpeed > 0 && playerPhysics.grounded) {
-			PAnim.CrossFade ("StickFigureRun", 0.0f);
-			PAnim.SetBool ("Run", true);
-			PAnim.SetBool ("RunBack", false);
+
+		if (currentSpeed < 0) {
+			Quaternion therotation = transform.localRotation;
+			therotation.y = 180;
+			transform.localRotation = therotation;
 		}
-		if (currentSpeed < 0 && playerPhysics.grounded) {
-			PAnim.CrossFade ("StickFigureRunBack", 0.0f);
-			PAnim.SetBool ("Run", true);
-			PAnim.SetBool ("RunBack", true);
-		} 
-		if (currentSpeed == 0 && playerPhysics.grounded) {
-			PAnim.CrossFade ("StickFigureIddle", 0.0f);
-			PAnim.SetBool ("Run", false);
-			PAnim.SetBool ("RunBack", false);
-		} 
+		if (currentSpeed > 0) {
+			Quaternion therotation = transform.localRotation;
+			therotation.y = 0;
+			transform.localRotation= therotation;
+		}
+
 
 		if (playerPhysics.grounded) {
 			amountToMove.y = 0;
+			if (currentSpeed == 0) {
+				PAnim.CrossFade ("StickFigureIddle", 0.0f);
+				PAnim.SetBool ("Run", false);
+			} else 
+			{
+				PAnim.CrossFade ("StickFigureRun", 0.0f);
+				PAnim.SetBool ("Run", true);
 
-			// Jump
+			}
 			if (Input.GetButtonDown ("Jump")) {
 				PAnim.SetTrigger ("Jump");
 				amountToMove.y = jumpHeight;	
 			}
 		}
+
+			
+
+
 		
-		amountToMove.x = currentSpeed;
+		amountToMove.x = Mathf.Abs(currentSpeed);
 		amountToMove.y -= gravity * Time.deltaTime;
 		playerPhysics.Move (amountToMove * Time.deltaTime);
 
-		if (transform.position.y < -15) {
+		if (transform.position.y < -50) {
 			Respawn ();
 		}
-		
 	}
 
 	public void Respawn()
@@ -97,10 +119,10 @@ public class PlayerController : MonoBehaviour {
 		GameObject[] platforms = GameObject.FindGameObjectsWithTag ("Platform");
 		float cameraPositionX = Camera.main.transform.position.x;
 		GameObject respawnPlatform = platforms [0];
-		float newDistance = Mathf.Abs(cameraPositionX - (respawnPlatform.GetComponent<BoxCollider>().center.x * respawnPlatform.transform.localScale.x));
+		float newDistance = Mathf.Abs(cameraPositionX - respawnPlatform.transform.position.x - (respawnPlatform.GetComponent<BoxCollider>().center.x * respawnPlatform.transform.localScale.x));
 
 		foreach (GameObject p in platforms) {
-			float positionX = p.GetComponent<BoxCollider>().center.x * p.transform.localScale.x;
+			float positionX = p.transform.position.x + p.GetComponent<BoxCollider>().center.x * p.transform.localScale.x;
 			float distance = Mathf.Abs (cameraPositionX - positionX);
 			if(distance < newDistance){
 				respawnPlatform = p;
@@ -108,9 +130,11 @@ public class PlayerController : MonoBehaviour {
 			}
 		}
 		Debug.Log (playerNo + " - " + respawnPlatform.name);
+
 		Vector3 scale = respawnPlatform.transform.localScale;
 		Vector3 newPosition = respawnPlatform.GetComponent<BoxCollider> ().center;
-		transform.position = new Vector3 (newPosition.x * scale.x, (newPosition.y + respawnPlatform.GetComponent<BoxCollider> ().size.y + 5) * scale.y, newPosition.z * scale.y);
+
+		transform.position = new Vector3 (respawnPlatform.transform.position.x + (newPosition.x * scale.x), respawnPlatform.transform.position.y + (newPosition.y + respawnPlatform.GetComponent<BoxCollider> ().size.y + 5) * scale.y, transform.position.z);
 
 		Text playerMalusText = GameObject.Find("P"+playerNo+"MalusText").GetComponent<Text>();
 		playerMalusText.text = "Malus : +" + (nbRespawn * 2) + "s";
@@ -126,5 +150,31 @@ public class PlayerController : MonoBehaviour {
 			n += a * Time.deltaTime * dir;
 			return (dir == Mathf.Sign(target-n))? n: target; // if n has now passed target then return target, otherwise return n
 		}
+	}
+
+	public void BoostSpeed(float timer)
+	{
+		jumpHeight += 2;
+		speed += 3;
+		acceleration += 100;
+		timerItem = Time.time + timer;
+		onItem = true;
+
+	}
+	void ItemEnd()
+	{
+		speed=oldMaxSpeed;
+		acceleration = oldAcceleration;
+		jumpHeight = oldJump;
+		isInvincible = false;
+		onItem = false;
+	}
+	void ItemInit()
+	{
+		oldJump = jumpHeight;
+		oldMaxSpeed = speed;
+		oldAcceleration = acceleration;
+		isInvincible = false;
+		onItem = false;
 	}
 }

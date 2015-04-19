@@ -13,6 +13,8 @@ GameObject:
   - 114: {fileID: 11414434}
   - 212: {fileID: 21245106}
   - 95: {fileID: 9572240}
+  - 54: {fileID: 5409522}
+  - 114: {fileID: 11478444}
   m_Layer: 10
   m_Name: Player2
   m_TagString: Player
@@ -27,11 +29,26 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 141960}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.13999999, y: 2.80999994, z: -.100000001}
+  m_LocalPosition: {x: -166, y: 17.7900009, z: -.100000001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!54 &5409522
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 141960}
+  serializedVersion: 2
+  m_Mass: 5
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!65 &6573552
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -53,7 +70,7 @@ Animator:
   m_GameObject: {fileID: 141960}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 36bdd23292c964743ac240b1b168baa5, type: 2}
+  m_Controller: {fileID: 22100000, guid: e4a5907beab5f004fbe317ff7cb44dae, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -67,7 +84,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 141960}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d7160003a0cb4874c8ba75c38bf8ce96, type: 3}
   m_Name: 
@@ -76,6 +93,7 @@ MonoBehaviour:
   speed: 8
   acceleration: 100
   jumpHeight: 12
+  playerNo: 2
   nbRespawn: 0
 --- !u!114 &11453970
 MonoBehaviour:
@@ -90,8 +108,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collisionMask:
     serializedVersion: 2
-    m_Bits: 4294964223
+    m_Bits: 4294960127
   grounded: 0
+  movementStopped: 0
+--- !u!114 &11478444
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 141960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b20b1295abcda604da2dad0f3c91381f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Item:
+  - {fileID: 0}
 --- !u!212 &21245106
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -116,7 +148,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 7f7394decf6de174b87af639978cc6a9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000
 Prefab:

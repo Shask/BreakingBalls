@@ -1,0 +1,187 @@
+fileFormatVersion: 2
+guid: 71ccc13f062696944b2e26932dd6f619
+timeCreated: 1429387982
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: winAccueil3_0
+    21300002: winAccueil3_1
+    21300004: winAccueil3_2
+    21300006: winAccueil3_3
+    21300008: winAccueil3_4
+    21300010: winAccueil3_5
+    21300012: winAccueil3_6
+    21300014: winAccueil3_7
+    21300016: winAccueil3_8
+    21300018: winAccueil3_9
+    21300020: winAccueil3_10
+    21300022: winAccueil3_11
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: winAccueil3_0
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 283
+        width: 233
+        height: 233
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: winAccueil3_1
+      rect:
+        serializedVersion: 2
+        x: 270
+        y: 283
+        width: 233
+        height: 233
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: winAccueil3_2
+      rect:
+        serializedVersion: 2
+        x: 539
+        y: 283
+        width: 233
+        height: 233
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: winAccueil3_3
+      rect:
+        serializedVersion: 2
+        x: 806
+        y: 283
+        width: 233
+        height: 233
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: winAccueil3_4
+      rect:
+        serializedVersion: 2
+        x: 1073
+        y: 286
+        width: 232
+        height: 232
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: winAccueil3_5
+      rect:
+        serializedVersion: 2
+        x: 1340
+        y: 286
+        width: 232
+        height: 232
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: winAccueil3_6
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 16
+        width: 233
+        height: 233
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: winAccueil3_7
+      rect:
+        serializedVersion: 2
+        x: 270
+        y: 16
+        width: 233
+        height: 233
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: winAccueil3_8
+      rect:
+        serializedVersion: 2
+        x: 539
+        y: 16
+        width: 233
+        height: 233
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: winAccueil3_9
+      rect:
+        serializedVersion: 2
+        x: 806
+        y: 16
+        width: 233
+        height: 233
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: winAccueil3_10
+      rect:
+        serializedVersion: 2
+        x: 1073
+        y: 19
+        width: 232
+        height: 233
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: winAccueil3_11
+      rect:
+        serializedVersion: 2
+        x: 1339
+        y: 19
+        width: 233
+        height: 233
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

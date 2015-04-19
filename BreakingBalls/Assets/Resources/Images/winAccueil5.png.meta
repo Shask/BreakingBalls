@@ -1,0 +1,165 @@
+fileFormatVersion: 2
+guid: a127dca5ebdb49f4a909e073ecf894ef
+timeCreated: 1429394134
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: winAccueil5_0
+    21300002: winAccueil5_1
+    21300004: winAccueil5_2
+    21300006: winAccueil5_3
+    21300008: winAccueil5_4
+    21300010: winAccueil5_5
+    21300012: winAccueil5_6
+    21300014: winAccueil5_7
+    21300016: winAccueil5_8
+    21300018: winAccueil5_9
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 125
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: winAccueil5_0
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 2720
+        width: 1340
+        height: 613
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: winAccueil5_1
+      rect:
+        serializedVersion: 2
+        x: 1619
+        y: 2720
+        width: 1312
+        height: 613
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: winAccueil5_2
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 2046
+        width: 1340
+        height: 613
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: winAccueil5_3
+      rect:
+        serializedVersion: 2
+        x: 1606
+        y: 2049
+        width: 1334
+        height: 608
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: winAccueil5_4
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 1385
+        width: 1335
+        height: 607
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: winAccueil5_5
+      rect:
+        serializedVersion: 2
+        x: 1621
+        y: 1385
+        width: 1333
+        height: 607
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: winAccueil5_6
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 737
+        width: 1333
+        height: 607
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: winAccueil5_7
+      rect:
+        serializedVersion: 2
+        x: 1619
+        y: 718
+        width: 1335
+        height: 608
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: winAccueil5_8
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 82
+        width: 1335
+        height: 608
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: winAccueil5_9
+      rect:
+        serializedVersion: 2
+        x: 1617
+        y: 49
+        width: 1338
+        height: 613
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
