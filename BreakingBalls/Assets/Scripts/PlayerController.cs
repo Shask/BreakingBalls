@@ -18,34 +18,27 @@ public class PlayerController : MonoBehaviour {
 	private Vector2 amountToMove;
 	private bool backwards = false;
 	private Animator PAnim;
-	
+
+	private PlayerItemController playerItemController;
 	private PlayerPhysics playerPhysics;
 
 	public int nbRespawn = 0;
 
 	private bool isMoving = true;
 	private float delayMoving;
-
-
-	float timerItem=0;
-	bool onItem=false;
-	float oldMaxSpeed ;
-	float oldAcceleration ;
-	float oldJump;
-	bool isInvincible ;
+	
 
 
 	void Start () {
 		playerPhysics = GetComponent<PlayerPhysics>();
 		PAnim = GetComponent<Animator> ();
-		ItemInit ();
+		playerItemController = GetComponent<PlayerItemController> (); 
+	
 	}
 	
 	void Update () {
 		//Si l'item a pris fin, on le delete
-		if (onItem && timerItem <= Time.time) {
-			ItemEnd ();
-		} 
+		 
 
 		if (!isMoving) {
 			delayMoving -= Time.deltaTime;
@@ -152,29 +145,6 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 
-	public void BoostSpeed(float timer)
-	{
-		jumpHeight += 2;
-		speed += 3;
-		acceleration += 100;
-		timerItem = Time.time + timer;
-		onItem = true;
 
-	}
-	void ItemEnd()
-	{
-		speed=oldMaxSpeed;
-		acceleration = oldAcceleration;
-		jumpHeight = oldJump;
-		isInvincible = false;
-		onItem = false;
-	}
-	void ItemInit()
-	{
-		oldJump = jumpHeight;
-		oldMaxSpeed = speed;
-		oldAcceleration = acceleration;
-		isInvincible = false;
-		onItem = false;
-	}
+
 }
