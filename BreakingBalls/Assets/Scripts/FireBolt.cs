@@ -3,40 +3,57 @@ using System.Collections;
 
 public class FireBolt : MonoBehaviour {
 
-	private Vector3 target;
-	private float speed = 0.15f;
+	private Vector3 target;//= new Vector3(-10f,0f,0f);
+	private float speed = 2f;
 
-	//public Transform _destination;
-	public float _speed;
+	private float _nextShotInSecond;
+
+	private bool move=false;
 	private Vector3 maposition;
-	
-	public void Initialize(Transform destination, float vitesse, Vector3 depart)
-	{
-
-		target = destination.position;
-		speed = vitesse;
-		maposition = depart;
-		transform.position = maposition;
-	}
 
 	// Use this for initialization
 	void Start () {
-		target = new Vector3 (2, 2, 0);
-		transform.position = new Vector3 (0, 0, 0);
+		//r.enabled = false;
+		maposition = transform.position;
+		_nextShotInSecond = 7f;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		//transform.Rotate (new Vector3 (0, 0, 2));
-		transform.Translate (target * speed * Time.deltaTime);
+		if (move) {
+			//transform.Translate (new Vector3(-1f,0f,-0f) * speed * Time.deltaTime);
+			transform.Translate (target * speed * Time.deltaTime);
+			//if ((maposition.x - 25f ) > transform.position.x)
+			if ((_nextShotInSecond -= Time.deltaTime) > 0)
+				return;
+				
+			Destroy (this.gameObject);
+			//transform.Rotate(new Vector3(0f,0f,30f));
+		}
+
 	}
 
 	void OnTriggerEnter(Collider other) {
-		Destroy (this);
+		other.GetComponent<PlayerController> ().Respawn ();
+		Destroy (this.gameObject);
 	}
 
 	public void setTargetPosition(Vector3 pos){
-		target = pos;
+		target = (pos - transform.position)/5;
 	}
+
+	public void setTargetPosition(){
+		target = new Vector3 (-1f, 0f, -0f);
+	}
+
+	public void setSpeed(float v){
+		speed = v;
+	}
+
+	public void StartTranslation(){
+		move = true;
+
+	}
+
 
 }

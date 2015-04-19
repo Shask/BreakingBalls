@@ -11,30 +11,48 @@ public class PlayerController : MonoBehaviour {
 	public float acceleration = 30;
 	public float jumpHeight = 12;
 
+	public int playerNo = 1;
+	
 	private float currentSpeed;
 	private float targetSpeed;
 	private Vector2 amountToMove;
 	private bool backwards = false;
 	private Animator PAnim;
-	
+
+	private PlayerItemController playerItemController;
 	private PlayerPhysics playerPhysics;
 
 	public int nbRespawn = 0;
-	public int playerNo;
 
 	private bool isMoving = true;
 	private float delayMoving;
 
-	private GameControl gc;
+	private string inputHorizontal,inputJump;
+
+
+	float timerItem=0;
+	bool onItem=false;
+	float oldMaxSpeed ;
+	float oldAcceleration ;
+	float oldJump;
+	bool isInvincible ;
+
+
 
 	void Start () {
 		playerPhysics = GetComponent<PlayerPhysics>();
 		PAnim = GetComponent<Animator> ();
-		playerNo = (this.name[this.name.Length - 1]) - 48;
-		gc = GameObject.Find("Main Camera").GetComponent<GameControl> ();
+
+		inputHorizontal = "Horizontal"+playerNo;
+		inputJump="Jump"+playerNo;
+
+		playerItemController = GetComponent<PlayerItemController> (); 
 	}
 	
 	void Update () {
+		//Si l'item a pris fin, on le delete
+		 
+
 		if (!isMoving) {
 			delayMoving -= Time.deltaTime;
 			if (delayMoving <= 0)
@@ -46,7 +64,7 @@ public class PlayerController : MonoBehaviour {
 			targetSpeed=0;
 			currentSpeed=0;
 		}
-		targetSpeed = Input.GetAxisRaw ("Horizontal") * speed;
+		targetSpeed = Input.GetAxisRaw (inputHorizontal) * speed;
 		currentSpeed = IncrementTowards (currentSpeed, targetSpeed, acceleration);
 
 
@@ -74,16 +92,14 @@ public class PlayerController : MonoBehaviour {
 				PAnim.SetBool ("Run", true);
 
 			}
-			if (Input.GetButtonDown ("Jump")) {
+			if (Input.GetButtonDown (inputJump)) {
 				PAnim.SetTrigger ("Jump");
 				amountToMove.y = jumpHeight;	
 			}
 		}
 
 			
-		if (Input.GetButtonDown ("Cancel")) {
-			gc.setPause();
-		}
+
 
 		
 		amountToMove.x = Mathf.Abs(currentSpeed);
@@ -141,4 +157,7 @@ public class PlayerController : MonoBehaviour {
 			return (dir == Mathf.Sign(target-n))? n: target; // if n has now passed target then return target, otherwise return n
 		}
 	}
+
+
+
 }
