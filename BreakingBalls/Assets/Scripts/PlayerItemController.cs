@@ -10,6 +10,7 @@ public class PlayerItemController : MonoBehaviour {
 	private int itemPicked;
 	
 	private PlayerController playerController;
+	private string inputFire;
 	
 	GameObject itemFeedBack;
 	
@@ -29,6 +30,7 @@ public class PlayerItemController : MonoBehaviour {
 		//MushroomItem=ListItem.GetComponent("Mushroom");
 		playerController = GetComponent<PlayerController> (); 
 		ItemInit ();
+		inputFire = "Fire" + playerController.playerNo;
 	}
 	
 	// Update is called once per frame
@@ -37,7 +39,7 @@ public class PlayerItemController : MonoBehaviour {
 			ItemEnd ();
 		}
 		if (hasItem && itemPicked!=-1) {
-			if (Input.GetButtonDown ("Fire1")) {
+			if (Input.GetButtonDown (inputFire)) {
 				UseItem ();
 			}
 		}
