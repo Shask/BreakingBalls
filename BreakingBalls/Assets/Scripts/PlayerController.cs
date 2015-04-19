@@ -38,6 +38,10 @@ public class PlayerController : MonoBehaviour {
 	float oldJump;
 	bool isInvincible ;
 
+	private GameObject respawnIcon;
+	private float respawnIconDelay = 0;
+	private Text playerMalusText;
+
 	void Start () {
 		playerPhysics = GetComponent<PlayerPhysics>();
 		PAnim = GetComponent<Animator> ();
@@ -47,12 +51,19 @@ public class PlayerController : MonoBehaviour {
 		inputJump="Jump"+playerNo;
 		
 		playerItemController = GetComponent<PlayerItemController> (); 
-		
+		respawnIcon = GameObject.Find ("RespawnImage" + playerNo);
+		respawnIcon.SetActive (false);
+		playerMalusText = GameObject.Find("P"+playerNo+"MalusText").GetComponent<Text>();		
 	}
 	
 	void Update () {
 		//Si l'item a pris fin, on le delete
-		 
+		if (respawnIcon.activeSelf) {
+			respawnIconDelay -= Time.deltaTime;
+			if(respawnIconDelay <= 0){
+				respawnIcon.SetActive (false);
+			}
+		}
 
 		if (!isMoving) {
 			delayMoving -= Time.deltaTime;
@@ -141,8 +152,9 @@ public class PlayerController : MonoBehaviour {
 
 		transform.position = new Vector3 (respawnPlatform.transform.position.x + (newPosition.x * scale.x), respawnPlatform.transform.position.y + (newPosition.y + respawnPlatform.GetComponent<BoxCollider> ().size.y + 5) * scale.y, transform.position.z);
 
-		Text playerMalusText = GameObject.Find("P"+playerNo+"MalusText").GetComponent<Text>();
 		playerMalusText.text = "Malus : +" + (nbRespawn * 2) + "s";
+		respawnIcon.SetActive (true);
+		respawnIconDelay = 0.8f; 
 	}
 
 	// Increase n towards target by speed

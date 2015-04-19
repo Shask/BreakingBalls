@@ -139,7 +139,7 @@ public class GameControl : MonoBehaviour {
 		positionXToReach /= players.Length;
 		positionYToReach /= players.Length;
 
-		float newPositionX = Mathf.Lerp (cameraX, positionXToReach, Time.deltaTime * 10);
+		float newPositionX = Mathf.Lerp (cameraX, positionXToReach + 10, Time.deltaTime * 10); // +10 : écran un peu plus à droite que la moyenne pour une meilleure visibilité
 		float newPositionY = Mathf.Lerp (cameraY, positionYToReach, Time.deltaTime * 10);
 
 		transform.position = new Vector3 (newPositionX, newPositionY, transform.position.z);
@@ -151,7 +151,7 @@ public class GameControl : MonoBehaviour {
 			if(p.position.x < (cameraX - cameraLength + (margin*hwRatio)) || p.position.x > (cameraX + cameraLength - (margin*hwRatio)))
 			{
 				float size = (Mathf.Abs (cameraX - p.position.x) / hwRatio);
-				if(size > cameraMaxSize)
+				if(size > (cameraMaxSize-margin))
 				{
 					respawnLastPlayer();
 				}
@@ -160,7 +160,7 @@ public class GameControl : MonoBehaviour {
 			} else if(p.position.y < (cameraY - cameraSize + margin) || p.position.y > (cameraY + cameraSize - margin))
 			{
 				float size = Mathf.Abs (cameraY - p.position.y);
-				if(size > cameraMaxSize)
+				if(size > (cameraMaxSize-margin))
 				{
 					respawnLastPlayer();
 				}
