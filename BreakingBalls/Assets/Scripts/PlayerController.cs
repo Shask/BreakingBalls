@@ -26,7 +26,6 @@ public class PlayerController : MonoBehaviour {
 
 	private bool isMoving = true;
 	private float delayMoving;
-<<<<<<< HEAD
 
 	private string inputHorizontal,inputJump;
 
@@ -37,23 +36,17 @@ public class PlayerController : MonoBehaviour {
 	float oldAcceleration ;
 	float oldJump;
 	bool isInvincible ;
-=======
-	
->>>>>>> c1608694bc5a3224d4f31d4e99a0af76f7851ae5
+
 
 
 	void Start () {
 		playerPhysics = GetComponent<PlayerPhysics>();
 		PAnim = GetComponent<Animator> ();
-<<<<<<< HEAD
-		ItemInit ();
+
 		inputHorizontal = "Horizontal"+playerNo;
 		inputJump="Jump"+playerNo;
 
-=======
 		playerItemController = GetComponent<PlayerItemController> (); 
-	
->>>>>>> c1608694bc5a3224d4f31d4e99a0af76f7851ae5
 	}
 	
 	void Update () {
