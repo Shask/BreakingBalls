@@ -11,8 +11,6 @@ public class PlayerController : MonoBehaviour {
 	public float acceleration = 30;
 	public float jumpHeight = 12;
 
-	public int playerNo = 1;
-	
 	private float currentSpeed;
 	private float targetSpeed;
 	private Vector2 amountToMove;
@@ -23,12 +21,15 @@ public class PlayerController : MonoBehaviour {
 	private PlayerPhysics playerPhysics;
 
 	public int nbRespawn = 0;
+	public int playerNo;
 
 	private bool isMoving = true;
 	private float delayMoving;
 
 	private string inputHorizontal,inputJump;
 
+	public static float[,] respawnDownPosition = { {-200, 0}, {-10, -10}, {140, -25}, {240, -30}, {1000, -10}};
+	public int respawnLevel = 0;
 
 	float timerItem=0;
 	bool onItem=false;
@@ -37,16 +38,16 @@ public class PlayerController : MonoBehaviour {
 	float oldJump;
 	bool isInvincible ;
 
-
-
 	void Start () {
 		playerPhysics = GetComponent<PlayerPhysics>();
 		PAnim = GetComponent<Animator> ();
+		playerNo = (int)(this.name [this.name.Length - 1]) - 48;
 
 		inputHorizontal = "Horizontal"+playerNo;
 		inputJump="Jump"+playerNo;
-
+		
 		playerItemController = GetComponent<PlayerItemController> (); 
+		
 	}
 	
 	void Update () {
@@ -86,8 +87,7 @@ public class PlayerController : MonoBehaviour {
 			if (currentSpeed == 0) {
 				PAnim.CrossFade ("StickFigureIddle", 0.0f);
 				PAnim.SetBool ("Run", false);
-			} else 
-			{
+			} else {
 				PAnim.CrossFade ("StickFigureRun", 0.0f);
 				PAnim.SetBool ("Run", true);
 
@@ -97,21 +97,21 @@ public class PlayerController : MonoBehaviour {
 				amountToMove.y = jumpHeight;	
 			}
 		}
-
-			
-
-
-		
+				
 		amountToMove.x = Mathf.Abs(currentSpeed);
 		amountToMove.y -= gravity * Time.deltaTime;
 		playerPhysics.Move (amountToMove * Time.deltaTime);
 
-		if (transform.position.y < -50) {
-			Respawn ();
+		// Respawn si tombe
+		if (transform.position.x >= respawnDownPosition [respawnLevel + 1,0]) {
+			respawnLevel++;
+		}
+		if (transform.position.y < respawnDownPosition[respawnLevel,1]) {
+			Respawn (transform.position.x - 5);
 		}
 	}
 
-	public void Respawn()
+	public void Respawn(float referencePosX)
 	{
 		if (!isMoving) {
 			return;
@@ -123,19 +123,18 @@ public class PlayerController : MonoBehaviour {
 		nbRespawn ++;
 
 		GameObject[] platforms = GameObject.FindGameObjectsWithTag ("Platform");
-		float cameraPositionX = Camera.main.transform.position.x;
+		//float cameraPositionX = Camera.main.transform.position.x - 5;
 		GameObject respawnPlatform = platforms [0];
-		float newDistance = Mathf.Abs(cameraPositionX - respawnPlatform.transform.position.x - (respawnPlatform.GetComponent<BoxCollider>().center.x * respawnPlatform.transform.localScale.x));
+		float newDistance = Mathf.Abs(referencePosX - respawnPlatform.transform.position.x - (respawnPlatform.GetComponent<BoxCollider>().center.x * respawnPlatform.transform.localScale.x));
 
 		foreach (GameObject p in platforms) {
 			float positionX = p.transform.position.x + p.GetComponent<BoxCollider>().center.x * p.transform.localScale.x;
-			float distance = Mathf.Abs (cameraPositionX - positionX);
+			float distance = Mathf.Abs (referencePosX - positionX);
 			if(distance < newDistance){
 				respawnPlatform = p;
 				newDistance = distance;
 			}
 		}
-		Debug.Log (playerNo + " - " + respawnPlatform.name);
 
 		Vector3 scale = respawnPlatform.transform.localScale;
 		Vector3 newPosition = respawnPlatform.GetComponent<BoxCollider> ().center;

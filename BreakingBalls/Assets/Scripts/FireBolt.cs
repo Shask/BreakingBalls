@@ -34,7 +34,7 @@ public class FireBolt : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider other) {
-		other.GetComponent<PlayerController> ().Respawn ();
+		other.GetComponent<PlayerController> ().Respawn (other.transform.position.x - 10);
 		Destroy (this.gameObject);
 	}
 

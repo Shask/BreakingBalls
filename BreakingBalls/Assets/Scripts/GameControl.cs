@@ -194,20 +194,20 @@ public class GameControl : MonoBehaviour {
 		float distance = 0;
 		foreach (Transform p in players) {
 			float distance1 = (-p.position.x + transform.position.x) / hwRatio;
-			float distance2 = (-p.position.y + transform.position.y);
+			//float distance2 = (-p.position.y + transform.position.y);
 			if(distance1 > distance)
 			{
 				distance = distance1;
 				lastPlayer = p;
 			}
-			if(distance2 > distance)
+			/*if(distance2 > distance)
 			{
 				distance = distance2;
 				lastPlayer = p;
-			}
+			}*/
 		}
 
-		lastPlayer.GetComponent<PlayerController> ().Respawn();
+		lastPlayer.GetComponent<PlayerController> ().Respawn(this.transform.position.x - 5);
 	}
 
 	void GameOver()
