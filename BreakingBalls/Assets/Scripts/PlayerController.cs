@@ -11,8 +11,6 @@ public class PlayerController : MonoBehaviour {
 	public float acceleration = 30;
 	public float jumpHeight = 12;
 
-	public int playerNo = 1;
-	
 	private float currentSpeed;
 	private float targetSpeed;
 	private Vector2 amountToMove;
@@ -22,13 +20,18 @@ public class PlayerController : MonoBehaviour {
 	private PlayerPhysics playerPhysics;
 
 	public int nbRespawn = 0;
+	public int playerNo;
 
 	private bool isMoving = true;
 	private float delayMoving;
 
+	private GameControl gc;
+
 	void Start () {
 		playerPhysics = GetComponent<PlayerPhysics>();
 		PAnim = GetComponent<Animator> ();
+		playerNo = (this.name[this.name.Length - 1]) - 48;
+		gc = GameObject.Find("Main Camera").GetComponent<GameControl> ();
 	}
 	
 	void Update () {
@@ -78,7 +81,9 @@ public class PlayerController : MonoBehaviour {
 		}
 
 			
-
+		if (Input.GetButtonDown ("Cancel")) {
+			gc.setPause();
+		}
 
 		
 		amountToMove.x = Mathf.Abs(currentSpeed);

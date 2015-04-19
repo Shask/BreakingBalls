@@ -14,20 +14,68 @@ public class GameControl : MonoBehaviour {
 	private float counter = 0;
 	private Text counterText;
 
+	public bool onPause;
+
+	private GameObject pausePanel;
+
 	// Use this for initialization
 	void Start () {
 		counterText = GameObject.Find("CounterText").GetComponent<Text>();
+		onPause = false;
 
+		pausePanel = GameObject.Find ("PausePanel");
+		Button b = GameObject.Find ("ButtonMenu").GetComponent<Button> ();
+		b.onClick.AddListener(() => ReturnToMenu ());
+		b = GameObject.Find ("ButtonQuit").GetComponent<Button> ();
+		b.onClick.AddListener(() => Quit ());
+		b = GameObject.Find ("ButtonRestart").GetComponent<Button> ();
+		b.onClick.AddListener(() => Restart ());
+		pausePanel.SetActive (false);		
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		ResizeCamera ();
+		if (!onPause) {
+			ResizeCamera ();
+			updateCounter ();
+		}
+	}
+
+	public void setPause()
+	{
+		onPause = !onPause;
+		if (onPause) {
+			pausePanel.SetActive (true);
+			Time.timeScale = 0f;
+		} else {
+			pausePanel.SetActive (false);
+			Time.timeScale = 1.0f;
+		}
+	}
+
+	public void Restart(){
+		setPause ();
+		Application.LoadLevel(Application.loadedLevel);
+	}
+	
+	public void Quit()
+	{
+		Application.Quit ();
+	}
+
+	public void ReturnToMenu()
+	{
+		setPause ();
+		Application.LoadLevel ("SceneMenu");
+	}
+	
+	void updateCounter()
+	{
 		counter += Time.deltaTime;
 		counterText.text = string.Format ("{0:#0}:{1:00}.{2:00}",
-		                                 Mathf.Floor (counter / 60),
-		                                 Mathf.Floor (counter) % 60,
-		                                 Mathf.Floor ((counter * 100) % 100));
+		                                  Mathf.Floor (counter / 60),
+		                                  Mathf.Floor (counter) % 60,
+		                                  Mathf.Floor ((counter * 100) % 100));
 	}
 
 	void ResizeCamera(){
