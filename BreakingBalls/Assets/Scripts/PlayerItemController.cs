@@ -72,13 +72,15 @@ public class PlayerItemController : MonoBehaviour {
 	}
 	void ItemEnd()
 	{
+		Animator animEnd = itemFeedBack.GetComponent<Animator> ();
+		animEnd.SetTrigger ("Destroy");
 		playerController.speed=oldMaxSpeed;
 		playerController.acceleration = oldAcceleration;
 		playerController.jumpHeight = oldJump;
 		isInvincible = false;
 		onItem = false;
-		itemFeedBack.SetActive (false);
-		Destroy (itemFeedBack);
+		//itemFeedBack.SetActive (false);
+		//Destroy (itemFeedBack);
 		
 	}
 	void ItemInit()

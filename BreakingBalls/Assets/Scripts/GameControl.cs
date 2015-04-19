@@ -17,6 +17,10 @@ public class GameControl : MonoBehaviour {
 	public bool onPause;
 
 	private GameObject pausePanel;
+	private Button[] pauseButtons;
+	private int buttonChoice;
+	private Color baseColor;
+	private bool onClick;
 
 	// Use this for initialization
 	void Start () {
@@ -24,13 +28,13 @@ public class GameControl : MonoBehaviour {
 		onPause = false;
 
 		pausePanel = GameObject.Find ("PausePanel");
-		Button b = GameObject.Find ("ButtonMenu").GetComponent<Button> ();
-		b.onClick.AddListener(() => ReturnToMenu ());
-		b = GameObject.Find ("ButtonQuit").GetComponent<Button> ();
-		b.onClick.AddListener(() => Quit ());
-		b = GameObject.Find ("ButtonRestart").GetComponent<Button> ();
-		b.onClick.AddListener(() => Restart ());
-		pausePanel.SetActive (false);		
+		pauseButtons = new Button[3];
+		pauseButtons[0] = GameObject.Find ("ButtonMenu").GetComponent<Button> ();
+		pauseButtons[1] = GameObject.Find ("ButtonRestart").GetComponent<Button> ();
+		pauseButtons[2] = GameObject.Find ("ButtonQuit").GetComponent<Button> ();
+		baseColor = pauseButtons [0].image.color;
+		pausePanel.SetActive (false);	
+		onClick = false;
 	}
 	
 	// Update is called once per frame
@@ -38,6 +42,42 @@ public class GameControl : MonoBehaviour {
 		if (!onPause) {
 			ResizeCamera ();
 			updateCounter ();
+		} else {
+			if(Input.GetAxisRaw ("Vertical1") > 0 && !onClick)
+			{
+				pauseButtons[buttonChoice].image.color = Color.gray;
+				buttonChoice = (buttonChoice + 2)%3;
+				pauseButtons[buttonChoice].image.color = baseColor;
+				onClick = true;
+			}else if(Input.GetAxisRaw ("Vertical1") < 0 && !onClick)
+			{
+				pauseButtons[buttonChoice].image.color = Color.gray;
+				buttonChoice = (buttonChoice + 1)%3;
+				pauseButtons[buttonChoice].image.color = baseColor;
+				onClick = true;
+			}else if(Input.GetAxisRaw ("Vertical1") == 0)
+			{
+				onClick = false;
+			}
+			if(Input.GetButtonDown("Jump1"))
+			{
+				switch(buttonChoice)
+				{
+				case 0:
+					ReturnToMenu();
+					break;
+				case 1:
+					Restart ();
+					break;
+				case 2:
+					Quit ();
+					break;
+				}
+			}
+		}
+
+		if (Input.GetButtonDown ("Cancel")) {
+			setPause ();
 		}
 	}
 
@@ -47,6 +87,10 @@ public class GameControl : MonoBehaviour {
 		if (onPause) {
 			pausePanel.SetActive (true);
 			Time.timeScale = 0f;
+			buttonChoice = 0;
+			pauseButtons[0].image.color = baseColor;
+			pauseButtons[1].image.color = Color.gray;
+			pauseButtons[2].image.color = Color.gray;
 		} else {
 			pausePanel.SetActive (false);
 			Time.timeScale = 1.0f;

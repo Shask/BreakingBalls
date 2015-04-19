@@ -47,7 +47,6 @@ public class MenuController : MonoBehaviour {
 				onClick [i] = false;
 			}
 		}
-
 	}
 
 	private void changeAnimationPlayer(int no)
