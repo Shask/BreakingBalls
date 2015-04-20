@@ -45,6 +45,7 @@ public class PlayerController : MonoBehaviour {
 	void Start () {
 		playerPhysics = GetComponent<PlayerPhysics> ();
 		PAnim = GetComponent<Animator> ();
+
 		playerNo = (int)(this.name [this.name.Length - 1]) - 48;
 
 		inputHorizontal = "Horizontal" + playerNo;

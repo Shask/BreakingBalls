@@ -13,41 +13,42 @@ public class MenuController : MonoBehaviour {
 
 	Image[] imagePlayers;
 	bool[] onClick;
-	public string[] horizontalInputs = {"Horizontal", "Horizontal2", "Horizontal3"};
+	string[] horizontalInputs = {"Horizontal1", "Horizontal2", "Horizontal3"};
 	//Button buttonStart;
 
 	// Use this for initialization
 	void Start () {
-		ApplicationModel.playerChoice = new int[] {1, 1 ,1};
+		ApplicationModel.playerChoice = new int[] {0, 1 ,2};
 		onClick = new bool[] {false, false, false};
 
 		imagePlayers = new Image[3];
-		imagePlayers [0] = GameObject.Find ("Image1").GetComponent<Image>();
-		imagePlayers [1] = GameObject.Find ("Image2").GetComponent<Image>();
-		imagePlayers [2] = GameObject.Find ("Image3").GetComponent<Image>();
+		for (int i = 0; i < 3; i ++) {
+			imagePlayers [i] = GameObject.Find ("Image"+(i+1)).GetComponent<Image> ();
+			changeAnimationPlayer(i);
+		}
 		//buttonStart = GameObject.Find ("ButtonStart").GetComponent<Button> ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetButton ("Jump")) {
+		if (Input.GetButton ("Jump1")) {
 			Application.LoadLevel ("SceneGwen");
 		} else if (Input.GetButton ("Cancel")) {
 			Application.Quit ();
 		}
 
 		for (int i = 0; i < 3; i++) {
-			if (Input.GetAxisRaw (horizontalInputs[i]) > 0 & !onClick [i]) {
+			if (Input.GetAxisRaw (horizontalInputs[i]) > 0 && !onClick [i]) {
 				ApplicationModel.playerChoice [i] += 1;
 				ApplicationModel.playerChoice [i] %= 3;
 				changeAnimationPlayer (i);
 				onClick [i] = true;
-			} else if (Input.GetAxisRaw (horizontalInputs[i]) < 0 & !onClick [i]) {
+			} else if (Input.GetAxisRaw (horizontalInputs[i]) < 0 && !onClick [i]) {
 				ApplicationModel.playerChoice [i] += 2;
 				ApplicationModel.playerChoice [i] %= 3;
 				changeAnimationPlayer (i);
 				onClick [i] = true;
-			} else if (Input.GetAxisRaw (horizontalInputs[i]) == i) {
+			} else if (Input.GetAxisRaw (horizontalInputs[i]) == 0) {
 				onClick [i] = false;
 			}
 		}
@@ -57,9 +58,6 @@ public class MenuController : MonoBehaviour {
 	{
 		Animator anim = imagePlayers [no].GetComponent<Animator> ();
 
-		if (no != 0) // temp
-			return;
-
 		switch (ApplicationModel.playerChoice [no]) {
 		case 0:
 			anim.CrossFade ("animationImage"+(no+1)+"0", 0.0f);
@@ -68,7 +66,7 @@ public class MenuController : MonoBehaviour {
 			anim.CrossFade ("animationImage"+(no+1), 0.0f);
 			break;
 		case 2:
-			anim.CrossFade ("animationImage"+(no+1)+"0", 0.0f); // temp
+			anim.CrossFade ("animationImage"+(no+1)+"2", 0.0f); // temp
 			break;
 		}
 	}

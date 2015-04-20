@@ -5,8 +5,11 @@ using System.Collections.Generic;
 
 public class GameControl : MonoBehaviour {
 
-	public Transform[] players;
-	public PlayerController[] pControllers;
+	public GameObject[] playerChoices;
+
+	private GameObject[] goPlayers;
+	private Transform[] players;
+	private PlayerController[] pControllers;
 	public float cameraInitialSize = 5;
 	private float hwRatio = 2; // Ratio between height and width screen size
 	public float cameraMaxSize = 13;
@@ -38,8 +41,14 @@ public class GameControl : MonoBehaviour {
 		pausePanel.SetActive (false);	
 		onClick = false;
 
+		players = new Transform[3];
+		goPlayers = new GameObject[3];
 		pControllers = new PlayerController[players.Length];
 		for(int i = 0; i < players.Length; i++) {
+			// Choix du préfab (couleur + fat/normal/rapide):
+			goPlayers[i] = Instantiate(playerChoices[i+(ApplicationModel.playerChoice[i]*3)], new Vector3(-153,-19,10), Quaternion.identity) as GameObject;
+			goPlayers[i].name = "Player"+(i+1);
+			players[i] = goPlayers[i].GetComponent<Transform>();
 			pControllers[i] = players[i].GetComponent<PlayerController>();
 		}
 		//pControllers [1].isWin = true; // TEST
