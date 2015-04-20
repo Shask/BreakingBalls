@@ -49,6 +49,8 @@ public class PlayerController : MonoBehaviour {
 
 		inputHorizontal = "Horizontal" + playerNo;
 		inputJump = "Jump" + playerNo;
+
+		Debug.Log(inputJump + " " + inputHorizontal);
 		
 		playerItemController = GetComponent<PlayerItemController> (); 
 		respawnIcon = GameObject.Find ("RespawnImage" + playerNo);

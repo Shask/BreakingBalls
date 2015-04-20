@@ -42,8 +42,8 @@ public class GameControl : MonoBehaviour {
 		for(int i = 0; i < players.Length; i++) {
 			pControllers[i] = players[i].GetComponent<PlayerController>();
 		}
-		pControllers [1].isWin = true; // TEST
-		pControllers [2].isWin = true; // TEST
+		//pControllers [1].isWin = true; // TEST
+		//pControllers [2].isWin = true; // TEST
 	}
 	
 	// Update is called once per frame
