@@ -39,7 +39,7 @@ public class chromeBolt : MonoBehaviour {
 	}
 	
 	void OnTriggerEnter(Collider other) {
-		other.GetComponent<PlayerPhysics> ().Move (new Vector2(-10, 0));
+		other.GetComponent<PlayerPhysics> ().Move (new Vector2(-0.5f, 0));
 	}
 	
 	public void setTargetPosition(Vector3 pos){
