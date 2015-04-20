@@ -29,13 +29,7 @@ public class PlayerController : MonoBehaviour {
 
 	private string inputHorizontal,inputJump;
 
-
-	float timerItem=0;
-	bool onItem=false;
-	float oldMaxSpeed ;
-	float oldAcceleration ;
-	float oldJump;
-	bool isInvincible ;
+	
 
 
 
