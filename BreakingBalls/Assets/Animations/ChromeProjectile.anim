@@ -5,7 +5,7 @@ AnimationClip:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: ItemDestruct
+  m_Name: ChromeProjectile
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -18,13 +18,11 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 21300000, guid: ae16e10de6b6bbc45b751c89a09d8bba, type: 3}
+      value: {fileID: 21300000, guid: 64ba0e8cec41aa14eb4aefb1a97f226f, type: 3}
     - time: .0833333358
-      value: {fileID: 21300000, guid: 0d16e6678b494214e8348cffd1f915b7, type: 3}
+      value: {fileID: 21300000, guid: 23cc5e6a147e6a5498c9867dbb1adb4b, type: 3}
     - time: .166666672
-      value: {fileID: 21300000, guid: 572045eefb1c51f4a9bd4c02949a5fa3, type: 3}
-    - time: .25
-      value: {fileID: 21300000, guid: 627184bc600a2e04a9b9390720442e6c, type: 3}
+      value: {fileID: 21300000, guid: abb0fe7b174983745b1e634c8542a392, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -43,14 +41,13 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 21300000, guid: ae16e10de6b6bbc45b751c89a09d8bba, type: 3}
-    - {fileID: 21300000, guid: 0d16e6678b494214e8348cffd1f915b7, type: 3}
-    - {fileID: 21300000, guid: 572045eefb1c51f4a9bd4c02949a5fa3, type: 3}
-    - {fileID: 21300000, guid: 627184bc600a2e04a9b9390720442e6c, type: 3}
+    - {fileID: 21300000, guid: 64ba0e8cec41aa14eb4aefb1a97f226f, type: 3}
+    - {fileID: 21300000, guid: 23cc5e6a147e6a5498c9867dbb1adb4b, type: 3}
+    - {fileID: 21300000, guid: abb0fe7b174983745b1e634c8542a392, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_StartTime: 0
-    m_StopTime: .333333343
+    m_StopTime: .25
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0

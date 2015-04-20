@@ -11,8 +11,10 @@ public class PlayerItemController : MonoBehaviour {
 	
 	private PlayerController playerController;
 	private string inputFire;
+	private Animator playerAnim;
 	
 	GameObject itemFeedBack;
+
 	
 	
 	
@@ -31,6 +33,8 @@ public class PlayerItemController : MonoBehaviour {
 		playerController = GetComponent<PlayerController> (); 
 		ItemInit ();
 		inputFire = "Fire" + playerController.playerNo;
+		playerAnim = GetComponent<Animator> ();
+
 	}
 	
 	// Update is called once per frame
@@ -47,10 +51,12 @@ public class PlayerItemController : MonoBehaviour {
 	}
 	public void LootRandomItem()
 	{
-		hasItem = true;
-		int item=Random.Range (0, Item.Count-1);
-		Item[item].SetActive(true);
-		itemPicked = item;
+		if (!hasItem) {
+			hasItem = true;
+			int item = Random.Range (0, Item.Count);
+			Item [item].SetActive (true);
+			itemPicked = item;
+		}
 	}
 	void UseItem()
 	{
@@ -59,9 +65,16 @@ public class PlayerItemController : MonoBehaviour {
 			Item [itemPicked].SetActive (false);
 			
 			GameObject go = (GameObject)Resources.Load (Item [itemPicked].name);
-			
-			itemFeedBack = Instantiate (go, gameObject.transform.localPosition, Quaternion.identity) as GameObject; 
-			itemFeedBack.transform.parent = transform;
+
+			Vector3 itemPosition = gameObject.transform.localPosition;
+			if( Item [itemPicked].name=="Chrome")
+			{
+				playerAnim.SetTrigger ("Attack");
+				if(transform.localRotation.y!=0 ) itemPosition+=new Vector3(-1,0,0);
+				else itemPosition+=new Vector3(1,0,0);
+			}
+			itemFeedBack = Instantiate (go, itemPosition, Quaternion.identity) as GameObject; 
+			if(Item [itemPicked].name=="Wings")itemFeedBack.transform.parent = transform ;
 			itemFeedBack.transform.rotation=transform.rotation;
 			itemFeedBack.SetActive (true);
 			
@@ -72,15 +85,14 @@ public class PlayerItemController : MonoBehaviour {
 	}
 	void ItemEnd()
 	{
-		Animator animEnd = itemFeedBack.GetComponent<Animator> ();
-		animEnd.SetTrigger ("Destroy");
+
 		playerController.speed=oldMaxSpeed;
 		playerController.acceleration = oldAcceleration;
 		playerController.jumpHeight = oldJump;
 		isInvincible = false;
 		onItem = false;
-		//itemFeedBack.SetActive (false);
-		//Destroy (itemFeedBack);
+		itemFeedBack.SetActive (false);
+		Destroy (itemFeedBack);
 		
 	}
 	void ItemInit()
@@ -93,12 +105,17 @@ public class PlayerItemController : MonoBehaviour {
 	}
 	public void BoostSpeed(float timer)
 	{
+
 		playerController.jumpHeight += 2;
 		playerController.speed += 3;
 		playerController.acceleration += 100;
 		timerItem = Time.time + timer;
 		onItem = true;
 		
+	}
+	public void ChromeThrow()
+	{
+
 	}
 	
 	

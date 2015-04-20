@@ -28,15 +28,11 @@ public class PlayerController : MonoBehaviour {
 
 	private string inputHorizontal,inputJump;
 
+
 	public static float[,] respawnDownPosition = { {-200, 0}, {-10, -10}, {140, -25}, {240, -30}, {1000, -10}};
 	public int respawnLevel = 0;
 
-	float timerItem=0;
-	bool onItem=false;
-	float oldMaxSpeed ;
-	float oldAcceleration ;
-	float oldJump;
-	bool isInvincible ;
+
 
 	private GameObject respawnIcon;
 	private float respawnIconDelay = 0;

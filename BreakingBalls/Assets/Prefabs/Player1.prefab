@@ -29,7 +29,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 162982}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -162.550003, y: 17.7900009, z: -.100000001}
+  m_LocalPosition: {x: -165, y: 18, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -92,9 +92,10 @@ MonoBehaviour:
   gravity: 20
   speed: 8
   acceleration: 100
-  jumpHeight: 12
-  playerNo: 1
+  jumpHeight: 13
   nbRespawn: 0
+  playerNo: 1
+  respawnLevel: 0
 --- !u!114 &11487004
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -123,6 +124,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Item:
+  - {fileID: 0}
   - {fileID: 0}
 --- !u!212 &21232708
 SpriteRenderer:
