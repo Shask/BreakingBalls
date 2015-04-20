@@ -11,14 +11,11 @@ public class FireBolt : MonoBehaviour {
 	private bool move=false;
 	private Vector3 maposition;
 
-	private Rigidbody rigidbody;
-
 	// Use this for initialization
 	void Start () {
 		//r.enabled = false;
 		maposition = transform.position;
 		_nextShotInSecond = 7f;
-		rigidbody = GetComponent<Rigidbody>();
 	}
 	
 	// Update is called once per frame
@@ -36,14 +33,9 @@ public class FireBolt : MonoBehaviour {
 
 	}
 
-	void OnTriggerEnter(Collider other)
-	{
-		Debug.Log ("ici ????");
-		if (other.gameObject.tag.Equals("Player"))
-		{
-			Debug.Log ("ici !!!!");
-			other.GetComponent<PlayerPhysics>().Move(new Vector2(100,0));
-		}
+	void OnTriggerEnter(Collider other) {
+		other.GetComponent<PlayerController> ().Respawn (other.transform.position.x - 10);
+		Destroy (this.gameObject);
 	}
 
 	public void setTargetPosition(Vector3 pos){

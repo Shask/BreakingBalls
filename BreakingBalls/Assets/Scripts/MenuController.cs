@@ -30,6 +30,8 @@ public class MenuController : MonoBehaviour {
 	void Update () {
 		if (Input.GetButton ("Jump")) {
 			Application.LoadLevel ("SceneGwen");
+		} else if (Input.GetButton ("Cancel")) {
+			Application.Quit ();
 		}
 
 		for (int i = 0; i < 3; i++) {
@@ -47,7 +49,6 @@ public class MenuController : MonoBehaviour {
 				onClick [i] = false;
 			}
 		}
-
 	}
 
 	private void changeAnimationPlayer(int no)

@@ -17,6 +17,10 @@ public class GameControl : MonoBehaviour {
 	public bool onPause;
 
 	private GameObject pausePanel;
+	private Button[] pauseButtons;
+	private int buttonChoice;
+	private Color baseColor;
+	private bool onClick;
 
 	// Use this for initialization
 	void Start () {
@@ -24,13 +28,13 @@ public class GameControl : MonoBehaviour {
 		onPause = false;
 
 		pausePanel = GameObject.Find ("PausePanel");
-		Button b = GameObject.Find ("ButtonMenu").GetComponent<Button> ();
-		b.onClick.AddListener(() => ReturnToMenu ());
-		b = GameObject.Find ("ButtonQuit").GetComponent<Button> ();
-		b.onClick.AddListener(() => Quit ());
-		b = GameObject.Find ("ButtonRestart").GetComponent<Button> ();
-		b.onClick.AddListener(() => Restart ());
-		pausePanel.SetActive (false);		
+		pauseButtons = new Button[3];
+		pauseButtons[0] = GameObject.Find ("ButtonMenu").GetComponent<Button> ();
+		pauseButtons[1] = GameObject.Find ("ButtonRestart").GetComponent<Button> ();
+		pauseButtons[2] = GameObject.Find ("ButtonQuit").GetComponent<Button> ();
+		baseColor = pauseButtons [0].image.color;
+		pausePanel.SetActive (false);	
+		onClick = false;
 	}
 	
 	// Update is called once per frame
@@ -38,6 +42,42 @@ public class GameControl : MonoBehaviour {
 		if (!onPause) {
 			ResizeCamera ();
 			updateCounter ();
+		} else {
+			if(Input.GetAxisRaw ("Vertical1") > 0 && !onClick)
+			{
+				pauseButtons[buttonChoice].image.color = Color.gray;
+				buttonChoice = (buttonChoice + 2)%3;
+				pauseButtons[buttonChoice].image.color = baseColor;
+				onClick = true;
+			}else if(Input.GetAxisRaw ("Vertical1") < 0 && !onClick)
+			{
+				pauseButtons[buttonChoice].image.color = Color.gray;
+				buttonChoice = (buttonChoice + 1)%3;
+				pauseButtons[buttonChoice].image.color = baseColor;
+				onClick = true;
+			}else if(Input.GetAxisRaw ("Vertical1") == 0)
+			{
+				onClick = false;
+			}
+			if(Input.GetButtonDown("Jump1"))
+			{
+				switch(buttonChoice)
+				{
+				case 0:
+					ReturnToMenu();
+					break;
+				case 1:
+					Restart ();
+					break;
+				case 2:
+					Quit ();
+					break;
+				}
+			}
+		}
+
+		if (Input.GetButtonDown ("Cancel")) {
+			setPause ();
 		}
 	}
 
@@ -47,6 +87,10 @@ public class GameControl : MonoBehaviour {
 		if (onPause) {
 			pausePanel.SetActive (true);
 			Time.timeScale = 0f;
+			buttonChoice = 0;
+			pauseButtons[0].image.color = baseColor;
+			pauseButtons[1].image.color = Color.gray;
+			pauseButtons[2].image.color = Color.gray;
 		} else {
 			pausePanel.SetActive (false);
 			Time.timeScale = 1.0f;
@@ -95,7 +139,7 @@ public class GameControl : MonoBehaviour {
 		positionXToReach /= players.Length;
 		positionYToReach /= players.Length;
 
-		float newPositionX = Mathf.Lerp (cameraX, positionXToReach, Time.deltaTime * 10);
+		float newPositionX = Mathf.Lerp (cameraX, positionXToReach + 10, Time.deltaTime * 10); // +10 : écran un peu plus à droite que la moyenne pour une meilleure visibilité
 		float newPositionY = Mathf.Lerp (cameraY, positionYToReach, Time.deltaTime * 10);
 
 		transform.position = new Vector3 (newPositionX, newPositionY, transform.position.z);
@@ -107,7 +151,7 @@ public class GameControl : MonoBehaviour {
 			if(p.position.x < (cameraX - cameraLength + (margin*hwRatio)) || p.position.x > (cameraX + cameraLength - (margin*hwRatio)))
 			{
 				float size = (Mathf.Abs (cameraX - p.position.x) / hwRatio);
-				if(size > cameraMaxSize)
+				if(size > (cameraMaxSize-margin))
 				{
 					respawnLastPlayer();
 				}
@@ -116,7 +160,7 @@ public class GameControl : MonoBehaviour {
 			} else if(p.position.y < (cameraY - cameraSize + margin) || p.position.y > (cameraY + cameraSize - margin))
 			{
 				float size = Mathf.Abs (cameraY - p.position.y);
-				if(size > cameraMaxSize)
+				if(size > (cameraMaxSize-margin))
 				{
 					respawnLastPlayer();
 				}
@@ -150,20 +194,20 @@ public class GameControl : MonoBehaviour {
 		float distance = 0;
 		foreach (Transform p in players) {
 			float distance1 = (-p.position.x + transform.position.x) / hwRatio;
-			float distance2 = (-p.position.y + transform.position.y);
+			//float distance2 = (-p.position.y + transform.position.y);
 			if(distance1 > distance)
 			{
 				distance = distance1;
 				lastPlayer = p;
 			}
-			if(distance2 > distance)
+			/*if(distance2 > distance)
 			{
 				distance = distance2;
 				lastPlayer = p;
-			}
+			}*/
 		}
 
-		lastPlayer.GetComponent<PlayerController> ().Respawn();
+		lastPlayer.GetComponent<PlayerController> ().Respawn(this.transform.position.x - 5);
 	}
 
 	void GameOver()
