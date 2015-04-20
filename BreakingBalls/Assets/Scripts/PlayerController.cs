@@ -42,22 +42,28 @@ public class PlayerController : MonoBehaviour {
 	private float respawnIconDelay = 0;
 	private Text playerMalusText;
 
+	public bool isWin = false;
+	public float winTime;
+	private GameControl gc;
+
 	void Start () {
-		playerPhysics = GetComponent<PlayerPhysics>();
+		playerPhysics = GetComponent<PlayerPhysics> ();
 		PAnim = GetComponent<Animator> ();
 		playerNo = (int)(this.name [this.name.Length - 1]) - 48;
 
-		inputHorizontal = "Horizontal"+playerNo;
-		inputJump="Jump"+playerNo;
+		inputHorizontal = "Horizontal" + playerNo;
+		inputJump = "Jump" + playerNo;
 		
 		playerItemController = GetComponent<PlayerItemController> (); 
 		respawnIcon = GameObject.Find ("RespawnImage" + playerNo);
 		respawnIcon.SetActive (false);
-		playerMalusText = GameObject.Find("P"+playerNo+"MalusText").GetComponent<Text>();		
+		playerMalusText = GameObject.Find ("P" + playerNo + "MalusText").GetComponent<Text> ();		
+		gc = GameObject.Find ("Main Camera").GetComponent<GameControl> ();
 	}
 	
 	void Update () {
 		//Si l'item a pris fin, on le delete
+
 		if (respawnIcon.activeSelf) {
 			respawnIconDelay -= Time.deltaTime;
 			if(respawnIconDelay <= 0){
@@ -76,10 +82,17 @@ public class PlayerController : MonoBehaviour {
 			targetSpeed=0;
 			currentSpeed=0;
 		}
-		targetSpeed = Input.GetAxisRaw (inputHorizontal) * speed;
+
+		if (!isWin) {
+			targetSpeed = Input.GetAxisRaw (inputHorizontal) * speed;
+		} else {
+			if(targetSpeed > 0)
+				targetSpeed -= Time.deltaTime * 3;
+			else
+				targetSpeed = 0;
+			//PAnim.CrossFade("StickFigureWin", 0.0f);
+		}
 		currentSpeed = IncrementTowards (currentSpeed, targetSpeed, acceleration);
-
-
 
 		if (currentSpeed < 0) {
 			Quaternion therotation = transform.localRotation;
@@ -92,7 +105,6 @@ public class PlayerController : MonoBehaviour {
 			transform.localRotation= therotation;
 		}
 
-
 		if (playerPhysics.grounded) {
 			amountToMove.y = 0;
 			if (currentSpeed == 0) {
@@ -103,12 +115,12 @@ public class PlayerController : MonoBehaviour {
 				PAnim.SetBool ("Run", true);
 
 			}
-			if (Input.GetButtonDown (inputJump)) {
+			if (!isWin && Input.GetButtonDown (inputJump)) {
 				PAnim.SetTrigger ("Jump");
 				amountToMove.y = jumpHeight;	
 			}
 		}
-				
+
 		amountToMove.x = Mathf.Abs(currentSpeed);
 		amountToMove.y -= gravity * Time.deltaTime;
 		playerPhysics.Move (amountToMove * Time.deltaTime);
@@ -120,11 +132,23 @@ public class PlayerController : MonoBehaviour {
 		if (transform.position.y < respawnDownPosition[respawnLevel,1]) {
 			Respawn (transform.position.x - 5);
 		}
+
+		//Fin
+		if (isWin == false && transform.position.x >= 730) {
+			isWin = true;
+			winTime = gc.counter + (nbRespawn*2);
+			playerMalusText.text = string.Format ("{0:#0}:{1:00}.{2:00}",
+			                                      Mathf.Floor (winTime / 60),
+			                                      Mathf.Floor (winTime) % 60,
+			                                      Mathf.Floor ((winTime * 100) % 100));
+			playerMalusText.color = Color.red;
+			playerMalusText.fontSize += 2;
+		}
 	}
 
 	public void Respawn(float referencePosX)
 	{
-		if (!isMoving) {
+		if (isWin || !isMoving) {
 			return;
 		}
 

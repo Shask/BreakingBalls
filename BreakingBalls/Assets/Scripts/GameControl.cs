@@ -1,17 +1,19 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
 
 public class GameControl : MonoBehaviour {
 
 	public Transform[] players;
+	public PlayerController[] pControllers;
 	public float cameraInitialSize = 5;
 	private float hwRatio = 2; // Ratio between height and width screen size
 	public float cameraMaxSize = 13;
 	public float margin = 3;
 	public int nbSecLostByRespawn = 2;
 
-	private float counter = 0;
+	public float counter = 0;
 	private Text counterText;
 
 	public bool onPause;
@@ -35,6 +37,13 @@ public class GameControl : MonoBehaviour {
 		baseColor = pauseButtons [0].image.color;
 		pausePanel.SetActive (false);	
 		onClick = false;
+
+		pControllers = new PlayerController[players.Length];
+		for(int i = 0; i < players.Length; i++) {
+			pControllers[i] = players[i].GetComponent<PlayerController>();
+		}
+		pControllers [1].isWin = true; // TEST
+		pControllers [2].isWin = true; // TEST
 	}
 	
 	// Update is called once per frame
@@ -79,6 +88,24 @@ public class GameControl : MonoBehaviour {
 		if (Input.GetButtonDown ("Cancel")) {
 			setPause ();
 		}
+
+		if (isGameFinished ()) {
+			ApplicationModel.playerTimes = new Dictionary<int, float>();
+			for(int i = 0; i < pControllers.Length; i++){
+				ApplicationModel.playerTimes.Add (i+1, pControllers[i].winTime);
+			}
+			Application.LoadLevel ("SceneEnd");
+		}
+	}
+
+	public bool isGameFinished()
+	{
+		bool returnvalue = true;
+		foreach (PlayerController pc in pControllers) {
+			if (!pc.isWin)
+				returnvalue = false;
+		}
+		return returnvalue;
 	}
 
 	public void setPause()

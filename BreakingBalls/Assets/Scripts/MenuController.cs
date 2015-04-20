@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class ApplicationModel
 {
 	public static int[] playerChoice;
+	public static Dictionary<int, float> playerTimes;
 }
 
 public class MenuController : MonoBehaviour {
