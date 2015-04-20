@@ -5,7 +5,7 @@ AnimationClip:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: StickFigure1Run
+  m_Name: WarStickJump
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -18,13 +18,15 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 21300000, guid: d3be8d15f7b5a08458230dc342f04ee0, type: 3}
+      value: {fileID: 21300000, guid: e37ecd66248f949449bdb4d783bff847, type: 3}
     - time: .0833333358
-      value: {fileID: 21300000, guid: b107e783c020842479fec87a9d38b479, type: 3}
+      value: {fileID: 21300000, guid: 4385ef4f82bf3ca4ca3922416845c2ae, type: 3}
     - time: .166666672
-      value: {fileID: 21300000, guid: 7227f9e9b5aeb8440a44ea80b84c3b9e, type: 3}
+      value: {fileID: 21300000, guid: 1dc4658ee9bf86543b942249ed78c14d, type: 3}
     - time: .25
-      value: {fileID: 21300000, guid: 7322b539efb8a154ab167fee9e6ae887, type: 3}
+      value: {fileID: 21300000, guid: f22a3b4fdba625e40bf15217de3a59b7, type: 3}
+    - time: .333333343
+      value: {fileID: 21300000, guid: 4391e16821beff6498b6f267d8f49a68, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -43,18 +45,19 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 21300000, guid: d3be8d15f7b5a08458230dc342f04ee0, type: 3}
-    - {fileID: 21300000, guid: b107e783c020842479fec87a9d38b479, type: 3}
-    - {fileID: 21300000, guid: 7227f9e9b5aeb8440a44ea80b84c3b9e, type: 3}
-    - {fileID: 21300000, guid: 7322b539efb8a154ab167fee9e6ae887, type: 3}
+    - {fileID: 21300000, guid: e37ecd66248f949449bdb4d783bff847, type: 3}
+    - {fileID: 21300000, guid: 4385ef4f82bf3ca4ca3922416845c2ae, type: 3}
+    - {fileID: 21300000, guid: 1dc4658ee9bf86543b942249ed78c14d, type: 3}
+    - {fileID: 21300000, guid: f22a3b4fdba625e40bf15217de3a59b7, type: 3}
+    - {fileID: 21300000, guid: 4391e16821beff6498b6f267d8f49a68, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_StartTime: 0
-    m_StopTime: .333333343
+    m_StopTime: .416666687
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
-    m_LoopTime: 0
+    m_LoopTime: 1
     m_LoopBlend: 0
     m_LoopBlendOrientation: 0
     m_LoopBlendPositionY: 0
