@@ -18,6 +18,9 @@ public class GameControl : MonoBehaviour {
 	public int nbSecLostByRespawn = 2;
 	public float cameraRightDelta = 5;
 
+	private GameObject ThisWay;
+	private bool ThisWayIsOn;
+
 	public float counter = 0;
 	private Text counterText;
 
@@ -36,6 +39,9 @@ public class GameControl : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		ThisWayIsOn = false;
+		ThisWay = GameObject.Find ("ThisWay");
+		ThisWay.SetActive (false);
 		counterText = GameObject.Find("CounterText").GetComponent<Text>();
 		onPause = false;
 		onBeginning = true;
@@ -43,6 +49,7 @@ public class GameControl : MonoBehaviour {
 		Time.timeScale = 0f;
 		startText = GameObject.Find ("StartText").GetComponent<Text> ();
 		startText.text = "Ready ?";
+
 
 		pausePanel = GameObject.Find ("PausePanel");
 		pauseButtons = new Button[3];
@@ -69,12 +76,17 @@ public class GameControl : MonoBehaviour {
 		}
 		AudioBackground = GetComponent<AudioSource> ();
 		AudioBackground.Play ();
+
 		//pControllers [1].isWin = true; // TEST
 		//pControllers [2].isWin = true; // TEST
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		if (!ThisWayIsOn && Time.time > 1.5f) {
+			ThisWay.SetActive (true);
+			ThisWayIsOn=true;
+		}
 		if (!onPause && !onBeginning) {
 			ResizeCamera ();
 			updateCounter ();
