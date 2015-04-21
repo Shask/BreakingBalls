@@ -16,11 +16,15 @@ public class MenuController : MonoBehaviour {
 	string[] horizontalInputs = {"Horizontal1", "Horizontal2", "Horizontal3"};
 	//Button buttonStart;
 
+	private AudioClip AudioScroll;
+	private AudioClip AudioSelect;
+
 	// Use this for initialization
 	void Start () {
 		ApplicationModel.playerChoice = new int[] {0, 1 ,2};
 		onClick = new bool[] {false, false, false};
-
+		AudioScroll = Resources.Load ("Sounds/Scroll" )as AudioClip;
+		AudioSelect= Resources.Load ("Sounds/Select" )as AudioClip;
 		imagePlayers = new Image[3];
 		for (int i = 0; i < 3; i ++) {
 			imagePlayers [i] = GameObject.Find ("Image"+(i+1)).GetComponent<Image> ();
@@ -32,6 +36,7 @@ public class MenuController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (Input.GetButton ("Jump1")) {
+			AudioSource.PlayClipAtPoint(AudioSelect,gameObject.transform.position,0.3f);
 			Application.LoadLevel ("ScenePrincipal");
 		} else if (Input.GetButton ("Cancel")) {
 			Application.Quit ();
@@ -61,12 +66,15 @@ public class MenuController : MonoBehaviour {
 		switch (ApplicationModel.playerChoice [no]) {
 		case 0:
 			anim.CrossFade ("animationImage"+(no+1)+"0", 0.0f);
+			AudioSource.PlayClipAtPoint(AudioScroll,gameObject.transform.position,0.2f);
 			break;
 		case 1:
 			anim.CrossFade ("animationImage"+(no+1), 0.0f);
+			AudioSource.PlayClipAtPoint(AudioScroll,gameObject.transform.position,0.2f);
 			break;
 		case 2:
 			anim.CrossFade ("animationImage"+(no+1)+"2", 0.0f); // temp
+			AudioSource.PlayClipAtPoint(AudioScroll,gameObject.transform.position,0.2f);
 			break;
 		}
 	}

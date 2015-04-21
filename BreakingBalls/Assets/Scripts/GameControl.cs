@@ -282,6 +282,7 @@ public class GameControl : MonoBehaviour {
 				lastPlayer = p;
 			}*/
 		}
+
 		lastPlayer.GetComponent<PlayerController> ().Respawn(this.transform.position.x - 5);
 	}
 

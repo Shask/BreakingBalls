@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour {
 	private PlayerPhysics playerPhysics;
 
 	private AudioClip AudioJump;
+	private AudioClip AudioRespawn;
 
 	public int nbRespawn = 0;
 	public int playerNo;
@@ -59,6 +60,7 @@ public class PlayerController : MonoBehaviour {
 		playerMalusText = GameObject.Find ("P" + playerNo + "MalusText").GetComponent<Text> ();		
 		gc = GameObject.Find ("Main Camera").GetComponent<GameControl> ();
 		AudioJump = Resources.Load ("Sounds/Jump" )as AudioClip;
+		AudioRespawn =Resources.Load ("Sounds/Respawn" )as AudioClip;
 
 	}
 	
@@ -117,7 +119,7 @@ public class PlayerController : MonoBehaviour {
 
 			}
 			if (!isWin && Input.GetButtonDown (inputJump)) {
-				AudioSource.PlayClipAtPoint(AudioJump,gameObject.transform.position,15f);
+				AudioSource.PlayClipAtPoint(AudioJump,gameObject.transform.position,0.5f);
 				PAnim.SetTrigger ("Jump");
 				amountToMove.y = jumpHeight;	
 			}
@@ -150,10 +152,11 @@ public class PlayerController : MonoBehaviour {
 
 	public void Respawn(float referencePosX)
 	{
+
 		if (isWin || !isMoving) {
 			return;
 		}
-
+		AudioSource.PlayClipAtPoint(AudioRespawn,gameObject.transform.position,0.1f);
 		isMoving = false;
 		delayMoving = 0.1f;
 
@@ -181,6 +184,8 @@ public class PlayerController : MonoBehaviour {
 		playerMalusText.text = "Malus : +" + (nbRespawn * 2) + "s";
 		respawnIcon.SetActive (true);
 		respawnIconDelay = 0.8f; 
+
+		PAnim.SetTrigger ("Respawn");
 	}
 
 	// Increase n towards target by speed
