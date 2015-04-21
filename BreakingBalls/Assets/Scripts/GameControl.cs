@@ -22,6 +22,7 @@ public class GameControl : MonoBehaviour {
 	private Text counterText;
 
 	public bool onPause;
+	private bool onBeginning;
 
 	private GameObject pausePanel;
 	private Button[] pauseButtons;
@@ -33,6 +34,7 @@ public class GameControl : MonoBehaviour {
 	void Start () {
 		counterText = GameObject.Find("CounterText").GetComponent<Text>();
 		onPause = false;
+		onBeginning = true;
 
 		pausePanel = GameObject.Find ("PausePanel");
 		pauseButtons = new Button[3];
@@ -49,7 +51,7 @@ public class GameControl : MonoBehaviour {
 		Image[] playerIcons = new Image[3];
 		for(int i = 0; i < players.Length; i++) {
 			// Choix du préfab (couleur + fat/normal/rapide):
-			goPlayers[i] = Instantiate(playerChoices[i+(ApplicationModel.playerChoice[i]*3)], new Vector3(-153,-19,10), Quaternion.identity) as GameObject;
+			goPlayers[i] = Instantiate(playerChoices[i+(ApplicationModel.playerChoice[i]*3)], new Vector3(-165,19,10), Quaternion.identity) as GameObject;
 			goPlayers[i].name = "Player"+(i+1);
 			playerIcons[i] = GameObject.Find ("P"+(i+1)+"Icon").GetComponent<Image>();
 			playerIcons[i].sprite = pIconChoices[ApplicationModel.playerChoice[i]+(i*3)];
@@ -63,7 +65,7 @@ public class GameControl : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (!onPause) {
+		if (!onPause && !onBeginning) {
 			ResizeCamera ();
 			updateCounter ();
 		} else {
