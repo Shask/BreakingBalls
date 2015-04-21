@@ -23,6 +23,7 @@ public class GameControl : MonoBehaviour {
 
 	public bool onPause;
 	private bool onBeginning;
+	private float beginTimer;
 
 	private GameObject pausePanel;
 	private Button[] pauseButtons;
@@ -35,6 +36,8 @@ public class GameControl : MonoBehaviour {
 		counterText = GameObject.Find("CounterText").GetComponent<Text>();
 		onPause = false;
 		onBeginning = true;
+		beginTimer = Time.realtimeSinceStartup;
+		Time.timeScale = 0f;
 
 		pausePanel = GameObject.Find ("PausePanel");
 		pauseButtons = new Button[3];
@@ -68,7 +71,13 @@ public class GameControl : MonoBehaviour {
 		if (!onPause && !onBeginning) {
 			ResizeCamera ();
 			updateCounter ();
-		} else {
+		} else if (onBeginning) {
+			float timer = Time.realtimeSinceStartup;
+			if(timer - beginTimer >= 3){
+				onBeginning = false;
+				Time.timeScale = 1.0f;
+			}
+		}else{
 			if(Input.GetAxisRaw ("Vertical1") > 0 && !onClick)
 			{
 				pauseButtons[buttonChoice].image.color = Color.gray;
@@ -221,7 +230,6 @@ public class GameControl : MonoBehaviour {
 			}
 		}
 		if (cameraSize != newSize) {
-			Debug.Log (newSize);
 			Camera.main.orthographicSize = Mathf.Lerp (cameraSize, newSize, Time.deltaTime * 2);
 		}
 		else{
@@ -241,7 +249,6 @@ public class GameControl : MonoBehaviour {
 			}
 			if(newSize < cameraInitialSize)
 				newSize = cameraInitialSize;
-			Debug.Log (newSize);
 			Camera.main.orthographicSize = Mathf.Lerp (cameraSize, newSize, Time.deltaTime * 2);
 		}
 	}
