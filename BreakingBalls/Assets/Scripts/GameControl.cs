@@ -6,6 +6,7 @@ using System.Collections.Generic;
 public class GameControl : MonoBehaviour {
 
 	public GameObject[] playerChoices;
+	public Sprite[] pIconChoices;
 
 	private GameObject[] goPlayers;
 	private Transform[] players;
@@ -44,10 +45,14 @@ public class GameControl : MonoBehaviour {
 		players = new Transform[3];
 		goPlayers = new GameObject[3];
 		pControllers = new PlayerController[players.Length];
+		Image[] playerIcons = new Image[3];
 		for(int i = 0; i < players.Length; i++) {
 			// Choix du préfab (couleur + fat/normal/rapide):
 			goPlayers[i] = Instantiate(playerChoices[i+(ApplicationModel.playerChoice[i]*3)], new Vector3(-153,-19,10), Quaternion.identity) as GameObject;
 			goPlayers[i].name = "Player"+(i+1);
+			playerIcons[i] = GameObject.Find ("P"+(i+1)+"Icon").GetComponent<Image>();
+			playerIcons[i].sprite = pIconChoices[ApplicationModel.playerChoice[i]+(i*3)];
+
 			players[i] = goPlayers[i].GetComponent<Transform>();
 			pControllers[i] = players[i].GetComponent<PlayerController>();
 		}

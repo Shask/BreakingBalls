@@ -438,6 +438,16 @@ MonoBehaviour:
   - {fileID: 175226, guid: cb5abe24a3fa55e4f9090a622ee5bfa7, type: 2}
   - {fileID: 186756, guid: 59d68d89d8ccc82499169e88c818c71d, type: 2}
   - {fileID: 141226, guid: 629a4572c4fe56e4b9f46b7c8d602111, type: 2}
+  pIconChoices:
+  - {fileID: 21300000, guid: edbb0a9acb85842428f0da38909bb4e9, type: 3}
+  - {fileID: 21300000, guid: 133f43140e6d23b49ba2e7543e49a80c, type: 3}
+  - {fileID: 21300000, guid: 030314794e4c6f84ea735dc7e7f5e065, type: 3}
+  - {fileID: 21300000, guid: a05ce32286c0a8e449a07145ca96195f, type: 3}
+  - {fileID: 21300000, guid: 344c58e66b3aeec40b0b2521214672d9, type: 3}
+  - {fileID: 21300000, guid: 8d4e6b27a829cc04fa3e46cde60e9946, type: 3}
+  - {fileID: 21300000, guid: e8843107507db4845a2e3a1989b1d94c, type: 3}
+  - {fileID: 21300000, guid: 8661b6355eb5aea4d9030d68e7664808, type: 3}
+  - {fileID: 21300000, guid: b8129b0de0814504fb79926b9f8ef081, type: 3}
   cameraInitialSize: 5
   cameraMaxSize: 15
   margin: 5
