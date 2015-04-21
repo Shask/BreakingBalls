@@ -24,6 +24,7 @@ public class GameControl : MonoBehaviour {
 	public bool onPause;
 	private bool onBeginning;
 	private float beginTimer;
+	private Text startText;
 
 	private GameObject pausePanel;
 	private Button[] pauseButtons;
@@ -40,6 +41,8 @@ public class GameControl : MonoBehaviour {
 		onBeginning = true;
 		beginTimer = Time.realtimeSinceStartup;
 		Time.timeScale = 0f;
+		startText = GameObject.Find ("StartText").GetComponent<Text> ();
+		startText.text = "Ready ?";
 
 		pausePanel = GameObject.Find ("PausePanel");
 		pauseButtons = new Button[3];
@@ -77,7 +80,11 @@ public class GameControl : MonoBehaviour {
 			updateCounter ();
 		} else if (onBeginning) {
 			float timer = Time.realtimeSinceStartup;
-			if(timer - beginTimer >= 3){
+			if(timer - beginTimer >= 2){
+				startText.fontSize = 50;
+				startText.text = "Go !";
+			}if(timer - beginTimer >= 3){
+				startText.text = "";
 				onBeginning = false;
 				Time.timeScale = 1.0f;
 			}

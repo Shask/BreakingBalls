@@ -17,3 +17,9 @@ EditorBuildSettings:
     path: Assets/Scenes/ScenesFinalSteven ( NE PAS TOUCHERRRRRRRRRRRRRRRR)/ScenePrincipal.unity
   - enabled: 1
     path: Assets/Scenes/ScenesFinalSteven ( NE PAS TOUCHERRRRRRRRRRRRRRRR)/SceneEnd.unity
+  - enabled: 1
+    path: Assets/Scenes/ScenesFinaleGwen/SceneEnd.unity
+  - enabled: 1
+    path: Assets/Scenes/ScenesFinaleGwen/SceneMenu.unity
+  - enabled: 1
+    path: Assets/Scenes/ScenesFinaleGwen/ScenePrincipal.unity
