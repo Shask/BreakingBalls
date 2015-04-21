@@ -646,7 +646,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: b8129b0de0814504fb79926b9f8ef081, type: 3}
   cameraInitialSize: 5
   cameraMaxSize: 15
-  margin: 3
+  margin: 5
   nbSecLostByRespawn: 2
   cameraRightDelta: 5
   counter: 0
@@ -715,7 +715,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 6
 --- !u!82 &378043272
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1615,7 +1615,7 @@ Transform:
   m_LocalScale: {x: 5, y: 5, z: 2}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 8
 --- !u!1 &1012833532
 GameObject:
   m_ObjectHideFlags: 0
@@ -2492,7 +2492,7 @@ Transform:
   m_LocalScale: {x: 5, y: 5, z: 2}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
 --- !u!1001 &1548173676
 Prefab:
   m_ObjectHideFlags: 0

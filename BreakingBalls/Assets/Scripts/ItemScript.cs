@@ -7,7 +7,7 @@ public class ItemScript : MonoBehaviour {
 	Animator animEnd;
 	public float RespawnTimer;
 	bool isActive;
-	public float TempsEntreRespawn = 5;
+	public float TempsEntreRespawn = 3;
 
 	private SphereCollider collider;
 	private SpriteRenderer sp;
@@ -37,7 +37,7 @@ public class ItemScript : MonoBehaviour {
 	}
 	void  OnTriggerEnter (Collider other)
 	{
-		Debug.Log ("Collision Item");
+		//Debug.Log ("Collision Item");
 		other.GetComponent<PlayerItemController> ().LootRandomItem ();
 		//animEnd.CrossFade ("Destroy", 0.0f);
 		isActive = false;
