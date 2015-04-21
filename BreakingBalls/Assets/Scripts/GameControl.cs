@@ -283,7 +283,7 @@ public class GameControl : MonoBehaviour {
 			}*/
 		}
 
-		lastPlayer.GetComponent<PlayerController> ().Respawn(this.transform.position.x - 5);
+		lastPlayer.GetComponent<PlayerController> ().Respawn(this.transform.position.x + 5);
 	}
 
 	void GameOver()

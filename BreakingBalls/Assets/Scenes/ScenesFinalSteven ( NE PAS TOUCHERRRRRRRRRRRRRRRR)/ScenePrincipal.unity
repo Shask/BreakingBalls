@@ -435,9 +435,9 @@ MonoBehaviour:
   - {fileID: 21300000, guid: b8129b0de0814504fb79926b9f8ef081, type: 3}
   cameraInitialSize: 5
   cameraMaxSize: 15
-  margin: 5
+  margin: 4
   nbSecLostByRespawn: 2
-  cameraRightDelta: 5
+  cameraRightDelta: 8
   counter: 0
   onPause: 0
 --- !u!81 &378043267

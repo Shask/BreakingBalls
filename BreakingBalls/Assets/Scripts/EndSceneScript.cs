@@ -19,8 +19,8 @@ public class EndSceneScript : MonoBehaviour {
 			images[i] = GameObject.Find ("Image "+(i+1));
 			int key =  list.ElementAt (i).Key;
 			string nameAnimator = "animatorIddle" + key;
-			if(ApplicationModel.playerChoice[i] == 0 || ApplicationModel.playerChoice[i] == 2)
-				nameAnimator = nameAnimator + ApplicationModel.playerChoice[i];
+			if(ApplicationModel.playerChoice[key-1] == 0 || ApplicationModel.playerChoice[key-1] == 2)
+				nameAnimator = nameAnimator + ApplicationModel.playerChoice[key-1];
 			images[i].GetComponent<Animator> ().CrossFade (nameAnimator, 0.0f);
 			Text textTime = GameObject.Find ("TextTime"+(i+1)).GetComponent<Text>();
 			float time = list.ElementAt(i).Value;
