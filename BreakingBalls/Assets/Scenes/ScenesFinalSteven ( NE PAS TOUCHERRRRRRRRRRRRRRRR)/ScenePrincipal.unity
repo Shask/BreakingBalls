@@ -2443,6 +2443,18 @@ Prefab:
       propertyPath: m_FontData.m_FontStyle
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 122468, guid: 6cf0c487ccb2db94c9c09d78aac18d97, type: 2}
+      propertyPath: m_Name
+      value: ItemP3Menu
+      objectReference: {fileID: 0}
+    - target: {fileID: 22417652, guid: 6cf0c487ccb2db94c9c09d78aac18d97, type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22417652, guid: 6cf0c487ccb2db94c9c09d78aac18d97, type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6cf0c487ccb2db94c9c09d78aac18d97, type: 2}
   m_IsPrefabParent: 0
