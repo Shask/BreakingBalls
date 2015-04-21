@@ -22,6 +22,9 @@ public class GameControl : MonoBehaviour {
 	private Text counterText;
 
 	public bool onPause;
+	private bool onBeginning;
+	private float beginTimer;
+	private Text startText;
 
 	private GameObject pausePanel;
 	private Button[] pauseButtons;
@@ -35,6 +38,11 @@ public class GameControl : MonoBehaviour {
 	void Start () {
 		counterText = GameObject.Find("CounterText").GetComponent<Text>();
 		onPause = false;
+		onBeginning = true;
+		beginTimer = Time.realtimeSinceStartup;
+		Time.timeScale = 0f;
+		startText = GameObject.Find ("StartText").GetComponent<Text> ();
+		startText.text = "Ready ?";
 
 		pausePanel = GameObject.Find ("PausePanel");
 		pauseButtons = new Button[3];
@@ -51,7 +59,7 @@ public class GameControl : MonoBehaviour {
 		Image[] playerIcons = new Image[3];
 		for(int i = 0; i < players.Length; i++) {
 			// Choix du préfab (couleur + fat/normal/rapide):
-			goPlayers[i] = Instantiate(playerChoices[i+(ApplicationModel.playerChoice[i]*3)], new Vector3(-153,-19,10), Quaternion.identity) as GameObject;
+			goPlayers[i] = Instantiate(playerChoices[i+(ApplicationModel.playerChoice[i]*3)], new Vector3(-165,19,10), Quaternion.identity) as GameObject;
 			goPlayers[i].name = "Player"+(i+1);
 			playerIcons[i] = GameObject.Find ("P"+(i+1)+"Icon").GetComponent<Image>();
 			playerIcons[i].sprite = pIconChoices[ApplicationModel.playerChoice[i]+(i*3)];
@@ -67,10 +75,20 @@ public class GameControl : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (!onPause) {
+		if (!onPause && !onBeginning) {
 			ResizeCamera ();
 			updateCounter ();
-		} else {
+		} else if (onBeginning) {
+			float timer = Time.realtimeSinceStartup;
+			if(timer - beginTimer >= 2){
+				startText.fontSize = 50;
+				startText.text = "Go !";
+			}if(timer - beginTimer >= 3){
+				startText.text = "";
+				onBeginning = false;
+				Time.timeScale = 1.0f;
+			}
+		}else{
 			if(Input.GetAxisRaw ("Vertical1") > 0 && !onClick)
 			{
 				pauseButtons[buttonChoice].image.color = Color.gray;
@@ -223,7 +241,6 @@ public class GameControl : MonoBehaviour {
 			}
 		}
 		if (cameraSize != newSize) {
-			Debug.Log (newSize);
 			Camera.main.orthographicSize = Mathf.Lerp (cameraSize, newSize, Time.deltaTime * 2);
 		}
 		else{
@@ -243,7 +260,6 @@ public class GameControl : MonoBehaviour {
 			}
 			if(newSize < cameraInitialSize)
 				newSize = cameraInitialSize;
-			Debug.Log (newSize);
 			Camera.main.orthographicSize = Mathf.Lerp (cameraSize, newSize, Time.deltaTime * 2);
 		}
 	}
