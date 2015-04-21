@@ -76,7 +76,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 154598}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12.9658966, y: 6.87613964, z: .306250006}
+  m_LocalPosition: {x: 12.9658966, y: 6.87613964, z: 0}
   m_LocalScale: {x: .5, y: .5, z: 1}
   m_Children: []
   m_Father: {fileID: 414642}
@@ -88,7 +88,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 176438}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -136.965897, y: 14.6238604, z: -.40625}
+  m_LocalPosition: {x: -152.979996, y: 15.0200005, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 401262}
@@ -103,7 +103,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 119842}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12.9658966, y: 4.37613964, z: .306250006}
+  m_LocalPosition: {x: 12.9658966, y: 4.37613964, z: 0}
   m_LocalScale: {x: .5, y: .5, z: 1}
   m_Children: []
   m_Father: {fileID: 414642}
@@ -115,7 +115,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 187618}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12.9658966, y: 9.37613964, z: .306250006}
+  m_LocalPosition: {x: 12.9658966, y: 9.37613964, z: 0}
   m_LocalScale: {x: .5, y: .5, z: 1}
   m_Children: []
   m_Father: {fileID: 414642}
@@ -131,6 +131,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2abd484254e45b943a1d182417bd3344, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  RespawnTimer: 0
+  TempsEntreRespawn: 5
 --- !u!114 &11456774
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -142,6 +144,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2abd484254e45b943a1d182417bd3344, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  RespawnTimer: 0
+  TempsEntreRespawn: 5
 --- !u!114 &11458104
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -153,6 +157,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2abd484254e45b943a1d182417bd3344, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  RespawnTimer: 0
+  TempsEntreRespawn: 5
 --- !u!135 &13501348
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -211,7 +217,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
+  m_SortingLayerID: -405169183
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 75eb503c65991e447a14e910fc36e8d0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -237,7 +243,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
+  m_SortingLayerID: -405169183
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 75eb503c65991e447a14e910fc36e8d0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -263,7 +269,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
+  m_SortingLayerID: -405169183
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 75eb503c65991e447a14e910fc36e8d0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

@@ -12,6 +12,8 @@ public class ItemScript : MonoBehaviour {
 	private SphereCollider collider;
 	private SpriteRenderer sp;
 
+	private AudioClip AudioUse;
+	private AudioClip AudioLoot;
 	// Use this for initialization
 	void Start () {
 		animEnd = GetComponent<Animator> ();
@@ -19,7 +21,8 @@ public class ItemScript : MonoBehaviour {
 		isActive = true;
 		sp = GetComponent<SpriteRenderer> ();
 		collider = GetComponent<SphereCollider> ();
-
+		AudioUse = Resources.Load ("Sounds/LancerIt" )as AudioClip;
+		AudioLoot =Resources.Load ("Sounds/LootItem" )as AudioClip;
 
 	}
 	
@@ -34,12 +37,14 @@ public class ItemScript : MonoBehaviour {
 	}
 	void  OnTriggerEnter (Collider other)
 	{
+		Debug.Log ("Collision Item");
 		other.GetComponent<PlayerItemController> ().LootRandomItem ();
-		animEnd.CrossFade ("Destroy", 0.0f);
+		//animEnd.CrossFade ("Destroy", 0.0f);
 		isActive = false;
 		RespawnTimer = TempsEntreRespawn;
 		sp.enabled = false;
 		collider.enabled=false;
+		AudioSource.PlayClipAtPoint(AudioLoot,gameObject.transform.position,0.2f);
 		//Destroy(gameObject) ;
 		//gameObject.SetActive(false);
 
@@ -52,7 +57,7 @@ public class ItemScript : MonoBehaviour {
 		if(gameObject.name =="Chrome")
 			player.GetComponent<PlayerItemController> ().ChromeThrow ();
 
-
+		AudioSource.PlayClipAtPoint(AudioUse,gameObject.transform.position,15f);
 	}
 	public IEnumerator  wait()
 	{

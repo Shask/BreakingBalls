@@ -31,6 +31,8 @@ public class GameControl : MonoBehaviour {
 	private Color baseColor;
 	private bool onClick;
 
+	private AudioSource AudioBackground;
+
 	// Use this for initialization
 	void Start () {
 		counterText = GameObject.Find("CounterText").GetComponent<Text>();
@@ -62,6 +64,8 @@ public class GameControl : MonoBehaviour {
 			players[i] = goPlayers[i].GetComponent<Transform>();
 			pControllers[i] = players[i].GetComponent<PlayerController>();
 		}
+		AudioBackground = GetComponent<AudioSource> ();
+		AudioBackground.Play ();
 		//pControllers [1].isWin = true; // TEST
 		//pControllers [2].isWin = true; // TEST
 	}

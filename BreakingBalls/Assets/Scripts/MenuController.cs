@@ -32,7 +32,7 @@ public class MenuController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (Input.GetButton ("Jump1")) {
-			Application.LoadLevel ("SceneGwen");
+			Application.LoadLevel ("ScenePrincipal");
 		} else if (Input.GetButton ("Cancel")) {
 			Application.Quit ();
 		}
