@@ -5,7 +5,7 @@ AnimationClip:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: StickFigure1Run
+  m_Name: StickFigureAttack2
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -18,13 +18,13 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 21300000, guid: d3be8d15f7b5a08458230dc342f04ee0, type: 3}
+      value: {fileID: 21300000, guid: c7d6f0d0f792fb04ca4364fc83a8f444, type: 3}
     - time: .0833333358
-      value: {fileID: 21300000, guid: b107e783c020842479fec87a9d38b479, type: 3}
+      value: {fileID: 21300000, guid: 8a1a2c6a883380d4ab573bbb55cb3360, type: 3}
     - time: .166666672
-      value: {fileID: 21300000, guid: 7227f9e9b5aeb8440a44ea80b84c3b9e, type: 3}
+      value: {fileID: 21300000, guid: 1edc3c232a392164abe2faca3d6f941b, type: 3}
     - time: .25
-      value: {fileID: 21300000, guid: 7322b539efb8a154ab167fee9e6ae887, type: 3}
+      value: {fileID: 21300000, guid: 41562022e30743c45885e4159e744c7f, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -43,10 +43,10 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 21300000, guid: d3be8d15f7b5a08458230dc342f04ee0, type: 3}
-    - {fileID: 21300000, guid: b107e783c020842479fec87a9d38b479, type: 3}
-    - {fileID: 21300000, guid: 7227f9e9b5aeb8440a44ea80b84c3b9e, type: 3}
-    - {fileID: 21300000, guid: 7322b539efb8a154ab167fee9e6ae887, type: 3}
+    - {fileID: 21300000, guid: c7d6f0d0f792fb04ca4364fc83a8f444, type: 3}
+    - {fileID: 21300000, guid: 8a1a2c6a883380d4ab573bbb55cb3360, type: 3}
+    - {fileID: 21300000, guid: 1edc3c232a392164abe2faca3d6f941b, type: 3}
+    - {fileID: 21300000, guid: 41562022e30743c45885e4159e744c7f, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_StartTime: 0

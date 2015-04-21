@@ -6,6 +6,7 @@ using System.Collections.Generic;
 public class GameControl : MonoBehaviour {
 
 	public GameObject[] playerChoices;
+	public Sprite[] pIconChoices;
 
 	private GameObject[] goPlayers;
 	private Transform[] players;
@@ -15,6 +16,7 @@ public class GameControl : MonoBehaviour {
 	public float cameraMaxSize = 13;
 	public float margin = 3;
 	public int nbSecLostByRespawn = 2;
+	public float cameraRightDelta = 5;
 
 	public float counter = 0;
 	private Text counterText;
@@ -46,10 +48,14 @@ public class GameControl : MonoBehaviour {
 		players = new Transform[3];
 		goPlayers = new GameObject[3];
 		pControllers = new PlayerController[players.Length];
+		Image[] playerIcons = new Image[3];
 		for(int i = 0; i < players.Length; i++) {
 			// Choix du préfab (couleur + fat/normal/rapide):
 			goPlayers[i] = Instantiate(playerChoices[i+(ApplicationModel.playerChoice[i]*3)], new Vector3(-153,-19,10), Quaternion.identity) as GameObject;
 			goPlayers[i].name = "Player"+(i+1);
+			playerIcons[i] = GameObject.Find ("P"+(i+1)+"Icon").GetComponent<Image>();
+			playerIcons[i].sprite = pIconChoices[ApplicationModel.playerChoice[i]+(i*3)];
+
 			players[i] = goPlayers[i].GetComponent<Transform>();
 			pControllers[i] = players[i].GetComponent<PlayerController>();
 		}
@@ -102,6 +108,9 @@ public class GameControl : MonoBehaviour {
 			setPause ();
 		}
 
+		if (onePlayerAsWon ()) {
+			cameraMaxSize = 25;
+		}
 		if (isGameFinished ()) {
 			ApplicationModel.playerTimes = new Dictionary<int, float>();
 			for(int i = 0; i < pControllers.Length; i++){
@@ -109,6 +118,15 @@ public class GameControl : MonoBehaviour {
 			}
 			Application.LoadLevel ("SceneEnd");
 		}
+	}
+
+	public bool onePlayerAsWon(){
+		bool returnvalue = false;
+		foreach (PlayerController pc in pControllers) {
+			if (pc.isWin)
+				returnvalue = true;
+		}
+		return returnvalue;
 	}
 
 	public bool isGameFinished()
@@ -179,7 +197,7 @@ public class GameControl : MonoBehaviour {
 		positionXToReach /= players.Length;
 		positionYToReach /= players.Length;
 
-		float newPositionX = Mathf.Lerp (cameraX, positionXToReach + 10, Time.deltaTime * 10); // +10 : écran un peu plus à droite que la moyenne pour une meilleure visibilité
+		float newPositionX = Mathf.Lerp (cameraX, positionXToReach + cameraRightDelta, Time.deltaTime * 10); // cameraDelta : écran un peu plus à droite que la moyenne pour une meilleure visibilité
 		float newPositionY = Mathf.Lerp (cameraY, positionYToReach, Time.deltaTime * 10);
 
 		transform.position = new Vector3 (newPositionX, newPositionY, transform.position.z);
@@ -191,7 +209,7 @@ public class GameControl : MonoBehaviour {
 			if(p.position.x < (cameraX - cameraLength + (margin*hwRatio)) || p.position.x > (cameraX + cameraLength - (margin*hwRatio)))
 			{
 				float size = (Mathf.Abs (cameraX - p.position.x) / hwRatio);
-				if(size > (cameraMaxSize-margin))
+				if(size >= (cameraMaxSize-margin))
 				{
 					respawnLastPlayer();
 				}
@@ -200,30 +218,32 @@ public class GameControl : MonoBehaviour {
 			} else if(p.position.y < (cameraY - cameraSize + margin) || p.position.y > (cameraY + cameraSize - margin))
 			{
 				float size = Mathf.Abs (cameraY - p.position.y);
-				if(size > (cameraMaxSize-margin))
-				{
-					respawnLastPlayer();
-				}
-				else if(size + margin > newSize)
+				if(size < (cameraMaxSize-margin) && size + margin > newSize)
 					newSize = size + margin;
 			}
 		}
-		if(cameraSize != newSize)
+		if (cameraSize != newSize) {
+			Debug.Log (newSize);
 			Camera.main.orthographicSize = Mathf.Lerp (cameraSize, newSize, Time.deltaTime * 2);
+		}
 		else{
 			/* Réduit le cadre si possible */
 			newSize = 0;
 			
 			foreach (Transform p in players) {
-				float size = Mathf.Abs (p.position.x - cameraX) / hwRatio + margin + 1;
+				float size = Mathf.Abs (p.position.x - cameraX) / hwRatio + margin;
 				if(size > newSize)
 					newSize = size;
-				size = Mathf.Abs (p.position.y - cameraY) / hwRatio + margin + 1;
+				size = Mathf.Abs (p.position.y - cameraY) + margin;
 				if(size > newSize)
 					newSize = size;
 			}
+			if(newSize >= cameraSize){
+				newSize = cameraSize;
+			}
 			if(newSize < cameraInitialSize)
 				newSize = cameraInitialSize;
+			Debug.Log (newSize);
 			Camera.main.orthographicSize = Mathf.Lerp (cameraSize, newSize, Time.deltaTime * 2);
 		}
 	}
@@ -246,7 +266,6 @@ public class GameControl : MonoBehaviour {
 				lastPlayer = p;
 			}*/
 		}
-
 		lastPlayer.GetComponent<PlayerController> ().Respawn(this.transform.position.x - 5);
 	}
 
