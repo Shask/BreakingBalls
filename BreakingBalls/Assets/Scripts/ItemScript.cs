@@ -44,7 +44,7 @@ public class ItemScript : MonoBehaviour {
 		RespawnTimer = TempsEntreRespawn;
 		sp.enabled = false;
 		collider.enabled=false;
-		AudioSource.PlayClipAtPoint(AudioLoot,gameObject.transform.position,15f);
+		AudioSource.PlayClipAtPoint(AudioLoot,gameObject.transform.position,0.2f);
 		//Destroy(gameObject) ;
 		//gameObject.SetActive(false);
 
