@@ -30,10 +30,20 @@ public class PlayerItemController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		//MushroomItem=ListItem.GetComponent("Mushroom");
+	
+
 		playerController = GetComponent<PlayerController> (); 
 		ItemInit ();
 		inputFire = "Fire" + playerController.playerNo;
 		playerAnim = GetComponent<Animator> ();
+		Debug.Log ("ItemP" + playerController.playerNo + "Menu/Wings");
+		string s = "/Canvas/Player" + playerController.playerNo + "Panel/ItemP" + playerController.playerNo + "Menu/Wings";
+		string s2 = "/Canvas/Player" + playerController.playerNo + "Panel/ItemP" + playerController.playerNo + "Menu/Chrome";
+		GameObject Wings = GameObject.Find (s);
+		GameObject Chrome = GameObject.Find (s2);
+		Item[1]= Chrome;
+		Item [0] = Wings;
+
 
 	}
 	

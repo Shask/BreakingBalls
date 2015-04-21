@@ -20,6 +20,8 @@ public class PlayerController : MonoBehaviour {
 	private PlayerItemController playerItemController;
 	private PlayerPhysics playerPhysics;
 
+	private AudioClip AudioJump;
+
 	public int nbRespawn = 0;
 	public int playerNo;
 
@@ -56,6 +58,8 @@ public class PlayerController : MonoBehaviour {
 		respawnIcon.SetActive (false);
 		playerMalusText = GameObject.Find ("P" + playerNo + "MalusText").GetComponent<Text> ();		
 		gc = GameObject.Find ("Main Camera").GetComponent<GameControl> ();
+		AudioJump = Resources.Load ("Sounds/Jump" )as AudioClip;
+
 	}
 	
 	void Update () {
@@ -113,6 +117,7 @@ public class PlayerController : MonoBehaviour {
 
 			}
 			if (!isWin && Input.GetButtonDown (inputJump)) {
+				AudioSource.PlayClipAtPoint(AudioJump,gameObject.transform.position,15f);
 				PAnim.SetTrigger ("Jump");
 				amountToMove.y = jumpHeight;	
 			}
